@@ -11,7 +11,7 @@ Le designer vous a fourni une maquette pour un formulaire sur le logiciel Figma 
 - L'intégration doit être responsive.
 - L'utilisation de framework est autorisée.
 
-## Pour parcitiper
+## Pour participer
 
 Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo suivi d'un lien codesandbox/jsfiddle ou autre permettant de voir cotre réponse
 
@@ -19,4 +19,8 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 
 - Pseudo - https://grafikart.fr/exemple-de-lien
 
-- Nicolas41 - https://codesandbox.io/s/tender-pine-1thci
+### Framework CSS 
+
+- Nicolas41 - https://codesandbox.io/s/tender-pine-1thci (bootstrap)
+- rherault - https://codepen.io/romaixn/pen/vYNrPag (tailwind)
+
