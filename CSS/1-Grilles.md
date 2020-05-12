@@ -18,4 +18,9 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 ## Vos solutions
 
 - Pseudo - https://grafikart.fr/exemple-de-lien
-- rherault - https://codepen.io/romaixn/pen/vYNrPag
+
+### Framework CSS 
+
+- Nicolas41 - https://codesandbox.io/s/tender-pine-1thci (bootstrap)
+- rherault - https://codepen.io/romaixn/pen/vYNrPag (tailwind)
+
