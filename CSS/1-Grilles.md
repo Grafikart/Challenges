@@ -10,3 +10,11 @@ Le designer vous a fourni une maquette pour un formulaire sur le logiciel Figma 
 - On se concentre ici sur la structure du formulaire plus que sur le style des éléments.
 - L'intégration doit être responsive.
 - L'utilisation de framework est autorisée.
+
+## Pour parcitiper
+
+Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo suivi d'un lien codesandbox/jsfiddle ou autre permettant de voir cotre réponse
+
+## Vos solutions
+
+- Pseudo - https://grafikart.fr/exemple-de-lien
