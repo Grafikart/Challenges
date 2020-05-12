@@ -19,8 +19,20 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 
 - Pseudo - https://grafikart.fr/exemple-de-lien
 
+### Grille
+
+- Bowser65 - https://codesandbox.io/s/grafikart-challenge-1-whp3t
+- Bokad - https://jsfiddle.net/veq0Lf6y/
+- BaptouFou - https://repl.it/repls/WorthwhileSeashellIrc
+
+### Flex
+
+- Norem - https://codepen.io/Norem/pen/GRpGbVO
+- Vscool - https://codesandbox.io/s/fragrant-brook-8evnd?file=/index.html
+- Couapy - https://codesandbox.io/s/nervous-shannon-vih2g?file=/style.css
+
 ### Framework CSS 
 
 - Nicolas41 - https://codesandbox.io/s/tender-pine-1thci (bootstrap)
 - rherault - https://codepen.io/romaixn/pen/vYNrPag (tailwind)
-
+- Amiega - https://codepen.io/fdfd/pen/KKdeEvB
