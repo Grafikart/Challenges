@@ -36,6 +36,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Norem - https://codepen.io/Norem/pen/GRpGbVO
 - Vscool - https://codesandbox.io/s/fragrant-brook-8evnd?file=/index.html
 - Couapy - https://codesandbox.io/s/nervous-shannon-vih2g?file=/style.css
+- whiskey92 - https://codepen.io/jl92000/pen/pojZZzW
 - m-vann - https://codesandbox.io/s/m-vann-u6rcu?file=/index.html
 - ARNOLD - https://codepen.io/arnold2020/pen/gOajazR
 - Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
