@@ -21,18 +21,27 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 
 ### Grille
 
+- Dim - https://jsfiddle.net/dimitri_bouteille/awzvq6uh/ ⭐
+- L4rks - https://codesandbox.io/s/divine-monad-l32vi ⭐
 - Bowser65 - https://codesandbox.io/s/grafikart-challenge-1-whp3t
 - Bokad - https://jsfiddle.net/veq0Lf6y/
 - BaptouFou - https://repl.it/repls/WorthwhileSeashellIrc
+- Gwen.L - https://codepen.io/gwenlacosse/pen/oNjMbzW (template area)
+- Papa Mouhamadou DIOP - https://codesandbox.io/s/bold-water-xvj6i
+- stephcache - https://jsfiddle.net/stephcache/6rasvc5e/24/
+- JeanBon - https://codepen.io/felixdorn/pen/QWjBgqQ
 
 ### Flex
 
 - Norem - https://codepen.io/Norem/pen/GRpGbVO
 - Vscool - https://codesandbox.io/s/fragrant-brook-8evnd?file=/index.html
 - Couapy - https://codesandbox.io/s/nervous-shannon-vih2g?file=/style.css
+- ARNOLD - https://codepen.io/arnold2020/pen/gOajazR
+- Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
 
 ### Framework CSS 
 
 - Nicolas41 - https://codesandbox.io/s/tender-pine-1thci (bootstrap)
 - rherault - https://codepen.io/romaixn/pen/vYNrPag (tailwind)
 - Amiega - https://codepen.io/fdfd/pen/KKdeEvB
+- olivier49 - https://codepen.io/olivier49/pen/WNQKjwv
