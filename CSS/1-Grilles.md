@@ -25,8 +25,10 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - L4rks - https://codesandbox.io/s/divine-monad-l32vi ⭐
 - MalikH - https://webdevproformation.github.io/grafikart-challenges/flex.html ⭐ (autofill)
 - Bowser65 - https://codesandbox.io/s/grafikart-challenge-1-whp3t
+- Roman R - https://codepen.io/romanryckebusch/pen/abvjJxw?editors=1100 (autofill, A11Y)
 - Bokad - https://jsfiddle.net/veq0Lf6y/
 - BaptouFou - https://repl.it/repls/WorthwhileSeashellIrc
+- Yann - https://codepen.io/yann-marec/pen/VwvBbYB
 - HugoWit - https://jsfiddle.net/Hugowit/6qud1yrp/8/
 - Choulss (grid+flex) - https://codesandbox.io/s/heuristic-cherry-4t3xk?file=/style.css (bonne gestion du format tablette)
 - PhiSyX - https://jsfiddle.net/PhiSyX/Lrzyvepd/ (bonne gestion du format tablette)
@@ -37,6 +39,9 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Guillaume ASTIER - https://codesandbox.io/embed/spooky-challenge-grafikart-css-1-kp3pi?fontsize=14&hidenavigation=1&theme=dark&view=preview
 - Voltra - https://codesandbox.io/s/grille-flex-pzpy0?file=/main.css
 - cissoko23 - https://jsfiddle.net/cissoko23/xsLb6v83/1/
+- Glioburd - https://codesandbox.io/s/grid-form-ufi2z (grid-area, fullscreen : https://ufi2z.csb.app/)
+- Chewbathra - https://codesandbox.io/s/wonderful-panini-f1clh ⭐
+- Taro - https://codesandbox.io/s/vigorous-williamson-mlzwi?file=/style.css
 
 ### Flex
 
@@ -49,6 +54,11 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - m-vann - https://codesandbox.io/s/m-vann-u6rcu?file=/index.html
 - ARNOLD - https://codepen.io/arnold2020/pen/gOajazR
 - Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
+- Roger Carter - https://codesandbox.io/s/eloquent-fog-wl3ji?file=/index.html
+
+### Grid & Flex
+
+- akbak - https://codesandbox.io/s/xenodochial-cerf-3f0z0
 
 ### Framework CSS 
 
@@ -57,3 +67,4 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Amiega - https://codepen.io/fdfd/pen/KKdeEvB
 - Art29 - https://codesandbox.io/s/challengeform-fr1v9 (bootstrap)
 - olivier49 - https://codepen.io/olivier49/pen/WNQKjwv
+- JulienKit - https://codesandbox.io/s/julienkit-grafikart-challenge-css-mai-2020-b4tiq (bootstrap)
