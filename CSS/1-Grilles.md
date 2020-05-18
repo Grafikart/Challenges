@@ -41,6 +41,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Glioburd - https://codesandbox.io/s/grid-form-ufi2z (grid-area, fullscreen : https://ufi2z.csb.app/)
 - Chewbathra - https://codesandbox.io/s/wonderful-panini-f1clh ⭐
 - Taro - https://codesandbox.io/s/vigorous-williamson-mlzwi?file=/style.css
+- gturpin - https://codepen.io/ThPrGanesha/pen/VwvGYMW?editors=1100 (grid + flex)
 
 ### Flex
 
