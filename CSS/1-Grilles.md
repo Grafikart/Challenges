@@ -41,6 +41,14 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Glioburd - https://codesandbox.io/s/grid-form-ufi2z (grid-area, fullscreen : https://ufi2z.csb.app/)
 - Chewbathra - https://codesandbox.io/s/wonderful-panini-f1clh ⭐
 - Taro - https://codesandbox.io/s/vigorous-williamson-mlzwi?file=/style.css
+- akbak - https://codesandbox.io/s/xenodochial-cerf-3f0z0
+- Florian - https://jsfiddle.net/7sbvw8an/2/
+- Matteo - https://codesandbox.io/s/funny-morning-pkq3i (template area)
+- itsadeki - https://codesandbox.io/s/challenge-css-grille-gnic0
+- AnttonDev - https://codesandbox.io/s/grafikartchallenge-by-anttondev-yi8ss
+- Ugo.P - https://codepen.io/Ugo_P/pen/BaoOoJW
+- georges - https://jsfiddle.net/dan_georges/opds19wm/ (template area)
+- Tatal - https://jsfiddle.net/ametthey/gL7qy5us/68/ (template area)
 
 ### Flex
 
@@ -55,11 +63,14 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
 - Roger Carter - https://codesandbox.io/s/eloquent-fog-wl3ji?file=/index.html
 - Jam83 - https://codesandbox.io/s/agitated-dew-8gnl4?file=/index.html (avec position absolute)
+- celtak - https://codepen.io/Celtak/pen/WNQKQrZ
+- Darth_Judge - https://codesandbox.io/s/loving-star-mpnsd
+- jam83 - https://codesandbox.io/s/agitated-dew-8gnl4
+- stevar - https://jsfiddle.net/stevar/ck3sq2Lw/2/#&togetherjs=6fJUkr3Ulj (pb d'alignement de champs & tabulation)
 
-### Grid & Flex
+## Float
 
-- akbak - https://codesandbox.io/s/xenodochial-cerf-3f0z0
-- Florian - https://jsfiddle.net/7sbvw8an/2/
+- Farouk - https://jsfiddle.net/Roukfa/t8epz9o0/8/
 
 ### Framework CSS 
 
