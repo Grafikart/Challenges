@@ -54,7 +54,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - ARNOLD - https://codepen.io/arnold2020/pen/gOajazR
 - Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
 - Roger Carter - https://codesandbox.io/s/eloquent-fog-wl3ji?file=/index.html
-- Jam83 - https://codesandbox.io/s/agitated-dew-8gnl4?file=/index.html
+- Jam83 - https://codesandbox.io/s/agitated-dew-8gnl4?file=/index.html (avec position absolute)
 
 ### Grid & Flex
 
