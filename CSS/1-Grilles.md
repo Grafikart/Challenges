@@ -54,10 +54,12 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - ARNOLD - https://codepen.io/arnold2020/pen/gOajazR
 - Jayson Mourier - https://codepen.io/burke9/pen/pojZyoy
 - Roger Carter - https://codesandbox.io/s/eloquent-fog-wl3ji?file=/index.html
+- Jam83 - https://codesandbox.io/s/agitated-dew-8gnl4?file=/index.html
 
 ### Grid & Flex
 
 - akbak - https://codesandbox.io/s/xenodochial-cerf-3f0z0
+- Florian - https://jsfiddle.net/7sbvw8an/2/
 
 ### Framework CSS 
 
@@ -68,3 +70,4 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - olivier49 - https://codepen.io/olivier49/pen/WNQKjwv
 - JulienKit - https://codesandbox.io/s/julienkit-grafikart-challenge-css-mai-2020-b4tiq (bootstrap)
 - Maxime - https://codesandbox.io/s/morning-mountain-qcvdx?file=/index.html (bootstrap)
+- Quentin Geeraert - https://codesandbox.io/s/grafikart-challenge-b84xt?file=/index.html (bootstrap)
