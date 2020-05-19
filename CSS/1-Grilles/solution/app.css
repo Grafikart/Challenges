@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #374151;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #E5E5E5;
+}
+
+.page {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 4px;
+  width: 1028px;
+  max-width: calc(100% - 20px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  background-color: #FFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #D7DBDF;
+  margin-bottom: 30px;
+}
+
+/**
+ * Flex
+ */
+.flex {
+  display: flex;
+}
+.flex > * + * {
+  margin-left: 8px;
+}
+.flex-end {
+  justify-content: flex-end;
+}
+
+/**
+ * Grille
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(297px, 1fr));
+  grid-gap: 24px;
+  align-items: stretch;
+}
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 24px;
+  }
+}
+
+.grid .full {
+  grid-column:1 / -1;
+}
+
+.grid .form-group-textarea {
+  grid-row-end: span 2;
+  height: 100%;
+  align-content: stretch;
+}
+
+.grid .btn-primary {
+  justify-self: flex-end;
+  grid-column-end: -1;
+}
+
+/**
+ * Style générique des formulaires
+ */
+.form-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: flex-start;
+  grid-template-rows: min-content;
+  grid-gap: 8px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  border: 1px solid #D2D6DB;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 14px 10px;
+}
+
+.form-check {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+.form-check-input {
+  margin-right: 8px;
+}
+
+.btn {
+  border: none;
+  color: #FFF;
+  font-weight: 500;
+  padding: 15px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #5850EB;
+}
+
+.btn-secondary {
+  background-color: grey;
+}
+
+.form-checkboxes {
+  display: flex;
+  flex-direction: column;
+  margin-left: -16px;
+  margin-top: -16px;
+}
+
+.form-checkboxes > * {
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+@media only screen and (min-width: 760px) {
+  .form-checkboxes {
+    flex-direction: row;
+  }
+}
