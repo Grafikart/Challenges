@@ -49,6 +49,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - Ugo.P - https://codepen.io/Ugo_P/pen/BaoOoJW
 - georges - https://jsfiddle.net/dan_georges/opds19wm/ (template area)
 - Tatal - https://jsfiddle.net/ametthey/gL7qy5us/68/ (template area)
+- avallete - https://codesandbox.io/s/grafikart-css-challenge-01-bppic
 
 ### Flex
 
