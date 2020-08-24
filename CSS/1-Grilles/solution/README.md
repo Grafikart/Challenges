@@ -2,7 +2,7 @@
 
 Pour cet exercice on a plusieurs solutions possibles mais les critères importants sont : 
 
-- Le code HTML doit rester simple et extensible (pouvoir rajouter des champs facilement plus tard par exemple, et éviter une structure trop en lien avec le design).
+- Le code HTMLuniux doit rester simple et extensible (pouvoir rajouter des champs facilement plus tard par exemple, et éviter une structure trop en lien avec le design).
 - Faire en sorte que la tabulation sélectionne les champs dans le bon ordre.
 - Faire en sorte que le responsive gère un maximum de cas (ne pas oublier les tablettes).
 - Gérer convenablement les espaces entre les champs quelquesoit la résolution.
