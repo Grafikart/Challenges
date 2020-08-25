@@ -13,7 +13,7 @@ Pour commencer on souhaite créer un formulaire dans lequel on va entrée la som
 
 ## Niveau 2
 
-On ajoutera une case à cocher pour préciser si on est en couble et un autre champs nous permettra de préciser le nombre d'enfant. En fonction de ces nouvelles données le système adaptera le taux.
+On ajoutera une case à cocher pour préciser si on est en couple et un autre champs nous permettra de préciser le nombre d'enfant. En fonction de ces nouvelles données le système adaptera le taux.
 
 ## Niveau 3
 
