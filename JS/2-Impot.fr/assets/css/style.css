@@ -1,0 +1,27 @@
+html, body {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header {
+    background-color: #808080;
+    color: #ffffff;
+    padding: 15px 10px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.content {
+    padding: 15px;
+}
+
+.table-tax-pourcent {
+    font-weight: bold;
+}
+
+#table-step-tax td {
+    border: 1px solid black;
+}
