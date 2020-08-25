@@ -26,6 +26,7 @@ $('#tax-input-income, #tax-input-status, #tax-input-child').on('input', function
         0: 0
     }
 
+    let brutIncome = ($('#tax-input-income').val() != '') ? parseInt($('#tax-input-income').val()) : 0;
     let status = (!$('#tax-input-status').prop('checked')) ? 1 : 2;
     let nbChild = ($('#tax-input-child').val() != '') ? parseInt($('#tax-input-child').val()) : 0;
     if (nbChild > 2) {
@@ -33,7 +34,6 @@ $('#tax-input-income, #tax-input-status, #tax-input-child').on('input', function
     }
     let quotientFam = status + nbChild;
 
-    let brutIncome = parseInt($('#tax-input-income').val());
     let qfBrutIncome = brutIncome / quotientFam;
     let netIncome = 0;
     let incrementTax = 0;
@@ -61,14 +61,24 @@ $('#tax-input-income, #tax-input-status, #tax-input-child').on('input', function
         if (amount > 0) {
             $table.append(`<tr>
                             <td class="table-tax-pourcent">${pourcent}</td>
-                            <td class="table-tax-amount">${amount}</td>
+                            <td class="table-tax-amount">${amount.toFixed(2)}</td>
+                            <td colspan="2" class="table-tax-limit">${taxStep[pourcent].min} - ${taxStep[pourcent].max}</td>
                             </tr>`);
         }
     });
 
+    if (incrementTax > 0) {
+        $('.table-div').css('display', 'block');
+        $('#no-tax-msg').css('display', 'none');
+    }
+    else {
+
+        $('.table-div').css('display', 'none');
+        $('#no-tax-msg').css('display', 'block');
+    }
 
     netIncome = brutIncome - incrementTax;
 
-    $('#tax-span-amount').html(incrementTax);
-    $('#tax-span-rest').html(netIncome);
+    $('#tax-span-amount').html(`${incrementTax.toFixed(2)} €`);
+    $('#tax-span-rest').html(`${netIncome} €`);
 });
