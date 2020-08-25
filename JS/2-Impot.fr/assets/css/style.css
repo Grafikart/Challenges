@@ -1,6 +1,18 @@
 html, body {
     margin: 0;
     font-size: 1.2rem;
+    height: 100%;
+    position: relative;
+}
+
+input[type="text"] {
+    height: 100%;
+    min-height: 25px;
+    border: 1px solid #b3b3b3;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 0.8rem;
+    outline: none;
 }
 
 .header {
@@ -15,13 +27,84 @@ html, body {
 }
 
 .content {
+    text-align:center;
     padding: 15px;
+} 
+
+/* Form */
+
+.tax-form {
+    width: auto;
+    margin: auto;
+}
+
+.tax-form div:nth-child(2) {
+    margin: 15px 0;
+}
+
+.tax-input-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#tax-input-child {
+    width: 20px;
+    border-radius: 25%;
+    text-align: center;
+}
+
+.tax-output-div {
+    margin-top: 20px;
+}
+
+#no-tax-msg {
+    align-content: center;
+    text-decoration: underline;
+}
+
+/* Table */
+
+.table-div {
+    margin-top: 30px;
+    display:none;
 }
 
 .table-tax-pourcent {
     font-weight: bold;
 }
 
+#table-step-tax {
+    margin: auto;
+    border-collapse: collapse;
+}
+
 #table-step-tax td {
     border: 1px solid black;
+    padding: 10px;
+}
+
+.footer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    padding: 15px 0;
+    width: 100%;
+    font-size: 20px;
+}
+
+/* Media queries */
+
+@media (max-width: 500px) {
+    .tax-form {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    .header {
+        text-align: center;
+    }
 }
