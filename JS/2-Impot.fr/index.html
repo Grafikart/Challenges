@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calcule impot</title>
+
+    <style>
+      *::after,
+      *::before,
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        width: 950px;
+        max-width: calc(100% - 1em);
+        margin: 0 auto;
+      }
+      ::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      ::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      :-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      ::-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      ::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .flex_column {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+      .form {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 0.4em 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0.4em;
+        margin-top: 1em;
+        margin-bottom: 2em;
+      }
+      .form .form-wrapper.block,
+      .form .options,
+      .form .submit {
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        grid-column: 1 / span 2;
+      }
+      .form .form-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+      .form .label_control {
+        -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 4px;
+      }
+      .form .submit {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .form .submit .btn {
+        padding: 0.4em 0.8em;
+        background-color: rgb(45, 88, 151);
+        border: 1px solid rgb(45, 88, 151);
+        border-radius: 4px;
+        -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .form .options {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin: 0.4em 0;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 2rem;
+        margin: 1em 0;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .tax_details {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 650px;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .tax_details .row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      .tax_details .head {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0.4em;
+      }
+      .tax_details .sections {
+        position: relative;
+        /* border-bottom: 4px solid #fff; */
+        background-color: #1f2c4f;
+        padding: 2em 0.4em;
+        color: #fff;
+      }
+      .tax_details .section_0 {
+        background-color: #e1add9;
+      }
+      .tax_details .section_1 {
+        background-color: #d75faa;
+      }
+      .tax_details .section_2 {
+        background-color: #c34f88;
+      }
+      .tax_details .section_3 {
+        background-color: #5b3569;
+      }
+
+      .tax_details .section_0::before,
+      .tax_details .section_1::before,
+      .tax_details .section_2::before,
+      .tax_details .section_3::before,
+      .tax_details .section_4::before {
+        content: "45%";
+        position: absolute;
+        text-align: right;
+        font-size: 2.5rem;
+        font-weight: 600;
+        border-bottom: 2px solid #fff;
+        display: block;
+        bottom: 0;
+        right: 0;
+        padding-right: 10px;
+        width: calc(100% - 175px);
+        z-index: 1;
+      }
+      .tax_details .section_0::before {
+        border: none;
+      }
+      .tax_details .section_0::before {
+        content: "0%";
+        width: calc(100% - 155px);
+      }
+      .tax_details .section_1::before {
+        content: "11%";
+        width: calc(100% - 155px);
+      }
+      .tax_details .section_2::before {
+        content: "30%";
+        width: calc(100% - 155px);
+      }
+      .tax_details .section_3::before {
+        content: "41%";
+        width: calc(100% - 155px);
+      }
+      .tax_details .section_1::after,
+      .tax_details .section_2::after,
+      .tax_details .section_3::after,
+      .tax_details .section_4::after {
+        content: "157 806 €";
+        position: absolute;
+        font-size: 25px;
+        font-weight: 600;
+        bottom: 0;
+        left: 0;
+        padding-left: 10px;
+        -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+        transform: translateY(50%);
+        z-index: 9;
+      }
+      .tax_details .section_1::after {
+        content: "10 064 €";
+      }
+      .tax_details .section_2::after {
+        content: "25 659 €";
+      }
+      .tax_details .section_3::after {
+        content: "73 369 €";
+      }
+      .tax_amount {
+        text-align: center;
+        width: 100%;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+
+      @media only screen and (max-width: 520px) {
+        .form {
+          -ms-grid-columns: 1fr;
+          grid-template-columns: 1fr;
+        }
+        .form .form-wrapper.block,
+        .form .options,
+        .form .submit {
+          -ms-grid-column: 1;
+          grid-column: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <form class="form" action="">
+          <div class="form-wrapper block">
+            <label for="income" class="label_control">Revenu imposable</label>
+            <input
+              type="text"
+              name="income"
+              id="income"
+              placeholder="Votre revenu annuel"
+            />
+          </div>
+          <div class="form-wrapper">
+            <label for="tax" class="label_control">Impot</label>
+            <input
+              type="text"
+              name="tax"
+              id="tax"
+              placeholder="Montant impot"
+            />
+          </div>
+          <div class="form-wrapper">
+            <label for="after_tax" class="label_control">Apres Impot</label>
+            <input
+              type="text"
+              name="after_tax"
+              id="after_tax"
+              placeholder="Montant apres impot"
+            />
+          </div>
+
+          <div class="options">
+            <div class="form-wrapper">
+              <label for="statut" class="label_control">Statut</label>
+              <select name="statut" id="statut">
+                <option value="0">Célibatair ou divorce ou veuf</option>
+                <option value="1">En couple</option>
+              </select>
+            </div>
+            <div class="form-wrapper">
+              <label for="nbr_enfant" class="label_control"
+                >Nombre enfant</label
+              >
+              <input
+                type="number"
+                name="nbr_enfant"
+                id="nbr_enfant"
+                placeholder="Nombre enfant en charge"
+              />
+            </div>
+            <div class="form-wrapper">
+              <label for="nbr_enfant_cmi" class="label_control"
+                >Nombre enfant titulaire carte
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  title="Nombre enfant titulaire de la carte à votre charge"
+                  href="https://www.service-public.fr/particuliers/vosdroits/F34049"
+                  >CMI</a
+                >
+              </label>
+              <input
+                type="number"
+                name="nbr_enfant_cmi"
+                id="nbr_enfant_cmi"
+                placeholder="Nombre enfant titulaire de la carte CMI"
+              />
+            </div>
+          </div>
+          <div class="form-wrapper submit">
+            <button class="btn" type="submit" name="calculate" value="Calculer">
+              Calculer
+            </button>
+          </div>
+        </form>
+
+        <div class="tax_details">
+          <h4 class="title">Impot par tranche</h4>
+          <div class="head row">
+            <span>Montant des revenus</span>
+            <span>% d'imposition</span>
+          </div>
+          <div class="sections section_4 row">
+            <p class="tax_amount">0 €</p>
+          </div>
+          <div class="sections section_3 row">
+            <p class="tax_amount">0 €</p>
+          </div>
+          <div class="sections section_2 row">
+            <p class="tax_amount">0 €</p>
+          </div>
+          <div class="sections section_1 row">
+            <p class="tax_amount">0 €</p>
+          </div>
+          <div class="sections section_0 row">
+            <p class="tax_amount">0 €</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="app.js"></script>
+  </body>
+</html>
