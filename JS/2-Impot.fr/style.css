@@ -1,0 +1,40 @@
+body{
+    background-color: rgb(27, 138, 146);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+#main{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+}
+
+input{
+    border: 3px solid black;
+}
+
+.formGRP{
+    margin: 10px;
+}
+
+table{
+    border: 1px solid #000;
+}
+td{
+    border: 1px solid #000;
+    text-align: center;
+}
+th{
+    font-size: 1em;
+    border: 1px solid #000;
+}
+.plafond{
+    font-size: 0.8em;
+}
