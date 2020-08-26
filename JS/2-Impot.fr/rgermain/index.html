@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculateur d'impôt sur le revenu</title>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="./style.css" rel="stylesheet">
+    </head>
+    <body class="text-gray-800">
+        <div class="flex justify-center items-center flex-col mt-5">
+            <h1 class="text-4xl text-indigo-700">
+                Calculateur d'impôt sur le revenu
+            </h1>
+            <div class="w-full flex justify-center">
+                <div id="recap-2019" class="w-1/4 flex flex-col text-white tab-recap p-2"></div>
+                <div id="recap-2019-revenue" class="w-1/4 flex flex-col text-white tab-recap p-2 hidden"></div>
+                <div class="w-2/4 flex justify-center flex-wrap">
+                    <button id="impot" class="w-2/4 inline p-2 shadow border-b-2 border-blue-700 hover:bg-gray-200" data-target="#impot-tab">
+                        Calcul impot
+                    </button>
+                    <button id="revenue" class="w-2/4 inline p-2 shadow border-b-2 border-transparent hover:bg-gray-200" data-target="#revenue-tab">
+                        Calcul revenue
+                    </button>
+                    <div id="impot-tab" class="w-full mt-2 shadow p-2">
+                        <form id="form" class="from flex flex-col">
+                            <label>
+                                Revenue déclarer:
+                                <br />
+                                <input name="revenue" required type="number" min="0" class="ml-6 p-2 bg-gray-200 border-2 border-transparent hover:border-gray-200 rounded-md">
+                            </label>
+                            <fieldset>
+                                <legend>
+                                    Votre situation
+                                </legend>
+                                <label class="ml-6 capitalize">
+                                    <input required  name="situation" type="radio" value="1" checked>
+                                    célibataire
+                                </label>
+                                <br/>
+                                <label class="ml-6 capitalize">
+                                    <input  required name="situation" type="radio" value="2">
+                                    en couple
+                                </label>
+                            </fieldset>
+                            <label>
+                                Nombre d'enfant a charge
+                                <br/>
+                                <input type="number" name="enfants" required value="0" min="0" class="ml-6 p-2 bg-gray-200 border-2 border-transparent hover:border-gray-200 rounded-md">
+                            </label>
+                            <button type="submit" class="px-4 py-2 bg-blue-700 rounded-full text-white self-end hover:bg-blue-800">
+                                Calculer
+                            </button>
+                        </form>
+                        <h2 id="result" class="hidden">
+                            <div>
+                                Votre quotient familial est de: 
+                                <span id="quotient" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Vote taux d'imposition 2020 est de : 
+                                <span id="2020" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Le taux d'imposition 2019 etait de : 
+                                <span id="2019" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Par rapport a 2019, vous avez 
+                                <span id="diff" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="revenue-tab" class="w-full mt-2 shadow p-2 hidden">
+                        <form id="form-revenue" class="from flex flex-col">
+                            <label>
+                                Impôt désirer:
+                                <br />
+                                <input name="impot" required type="number" min="0" class="ml-6 p-2 bg-gray-200 border-2 border-transparent hover:border-gray-200 rounded-md">
+                            </label>
+                            <fieldset>
+                                <legend>
+                                    Votre situation
+                                </legend>
+                                <label class="ml-6 capitalize">
+                                    <input required  name="situation" type="radio" value="1" checked>
+                                    célibataire
+                                </label>
+                                <br/>
+                                <label class="ml-6 capitalize">
+                                    <input  required name="situation" type="radio" value="2">
+                                    en couple
+                                </label>
+                            </fieldset>
+                            <label>
+                                Nombre d'enfant a charge
+                                <br/>
+                                <input type="number" name="enfants" required value="0" min="0" class="ml-6 p-2 bg-gray-200 border-2 border-transparent hover:border-gray-200 rounded-md">
+                            </label>
+                            <button type="submit" class="px-4 py-2 bg-blue-700 rounded-full text-white self-end hover:bg-blue-800">
+                                Calculer
+                            </button>
+                        </form>
+                        <h2 id="result-revenue" class="hidden">
+                            <div>
+                                Votre quotient familial est de: 
+                                <span id="quotient-revenue" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Pour 2020 vous devez déclarer environ : 
+                                <span id="2020-revenue" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Pour 2019 vous devez déclarer environ : 
+                                <span id="2019-revenue" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                            <div>
+                                Par rapport a 2019, vous avez 
+                                <span id="diff-revenue" class="text-indigo-700 italic animate-pulse" />
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+                <div id="recap-2020" class="w-1/4 flex flex-col text-white tab-recap p-2"></div>
+                <div id="recap-2020-revenue" class="w-1/4 flex flex-col text-white tab-recap p-2 hidden"></div>
+            </div>
+        </div>
+        <script src="./init.js"></script>
+        <script src="./calcul.js"></script>
+        <script src="./main.js"></script>
+    </body>
+</html>
