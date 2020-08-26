@@ -23,6 +23,18 @@ On souhaite avoir un détail du montant que l'on paye par tranche. Le système a
 
 Pour l'exercice final on prendra le problème en sens inverse et on permettra à l'utilisateur d'entrer la somme désiré (après impôt) et le système calculera les revenus net à avoir pour obtenir cette somme après l'imposition.
 
-# Les solutions
+# Solutions :
 
-- @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i
+## React
+
+- @Mania#6276 : [CodeSandbox](https://codesandbox.io/s/github/MathisBarre/grafikart-challenge-impots) - [CodeSandbox Livetest](https://sl8sp.csb.app/)
+- @LemaireJean-Baptiste : [CodeSandbox](https://codesandbox.io/s/grafikart-challenge-tax-calculator-jbl-dr8zo)
+- @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i (Typescript)
+
+## VueJS
+
+- @Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
+
+## Svelte
+
+- @PeufOne: https://codesandbox.io/s/wandering-morning-g7ow0
