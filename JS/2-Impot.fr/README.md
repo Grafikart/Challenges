@@ -22,3 +22,7 @@ On souhaite avoir un détail du montant que l'on paye par tranche. Le système a
 ## Boss final
 
 Pour l'exercice final on prendra le problème en sens inverse et on permettra à l'utilisateur d'entrer la somme désiré (après impôt) et le système calculera les revenus net à avoir pour obtenir cette somme après l'imposition.
+
+## Solution
+
+@Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
