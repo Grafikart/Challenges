@@ -1,5 +1,7 @@
 //***************************************************************************************************** */
 //                                  Challenge Grafikart : impots js
+//                                  https://github.com/mojinet
+//                                  https://jbco.fr
 //***************************************************************************************************** */
 
 const PLAFOND = [0, 10064, 25659, 73369, 157806]
@@ -28,6 +30,14 @@ const MAXTAXE = [
 //                  calcTaxeTotal()             calcule la valeur total de la taxe
 //                  calcNet()                   calcule le net restant
 //                  taxeParTranche(TRANCHE)     renvois la valeur de la taxe suivant la tranche
+//
+//                                  Fonctionnement reverse:
+//
+// 1 - saisie input de l'user 'net restant' appel reverse()
+// 2 - reverse() appel returnReverse() qui renvois le revenu à avoir pour toucher le salaire 'net restant' demandé par l'utilisateur
+//          Pour trouver le résultat la méthode returnReverse() appel returnNet() qui retourne le salaire NET apres impots pour un revenu
+//          De base on essaye avec la meme valeur que le net demander et on incrémente de 1
+//          Tant que la valeur retourner par returnNet() n'est pas égal à la valeur souhaiter on continue
 //***************************************************************************************************** */
 
 class FormImpot extends React.Component{
@@ -38,11 +48,14 @@ class FormImpot extends React.Component{
             taxeMarginal: 0,
             enfant: 0,
             couple: false,
-            part: 1
+            part: 1,
+            netCalc: 0,
+            revenuReverse: 0
         }
         this.handleChange = this.handleChange.bind(this)
+        this.reverse = this.reverse.bind(this)
     }
-
+    
     // Update les state avec les champs remplis par l'utilisateur puis appel calcRessource() en callBack
     handleChange(e){
         let name = e.target.name
@@ -50,6 +63,9 @@ class FormImpot extends React.Component{
         let value = type === 'checkbox' ? e.target.checked : parseInt(e.target.value)
         
         this.setState({[name]: value}, ()=> this.calcRessource())
+        if (name == 'couple' | name == 'enfant'){
+            this.reverse(null)
+        } 
     }
 
     // Calcule du taux marginal, du nombre de part puis appel calcTaxeMarginal() en callBack
@@ -64,6 +80,8 @@ class FormImpot extends React.Component{
         else if (REVENU > PLAFOND[TRANCHE2]) {trancheMarginal = TRANCHE2}
         else {trancheMarginal = TRANCHE1}
         this.setState({tranche: trancheMarginal, part: PART}, ()=> this.calcTaxeMarginal())
+
+        return [trancheMarginal, PART]
     }
 
     // Calcule de la taxe de la tranche marginal SI les revenu sont au dessus de la tranche 1 (+10064€)
@@ -76,6 +94,8 @@ class FormImpot extends React.Component{
         TRANCHE != 0 ? taxe = ( REVENU - ( PLAFOND[TRANCHE] + 1 ) ) * TAUX[TRANCHE] : taxe = 0
 
         this.setState({taxeMarginal: taxe * PART})
+
+        return taxe * PART
     }
 
     // Calcule la somme de toute les tranches d'imposition
@@ -99,6 +119,37 @@ class FormImpot extends React.Component{
         return this.state.tranche > TRANCHE ? MAXTAXE[TRANCHE] : this.state.tranche == TRANCHE ? this.state.taxeMarginal.toFixed(2) : 0
     }
 
+    reverse(e){
+        if (e == null){
+            let value = this.state.netCalc
+            this.setState({netCalc : value}, () => {this.returnReverse(value)})
+            this.calcRessource()
+        }else{
+            let value = e.target.value
+            this.setState({netCalc : value}, () => {this.returnReverse(value)})
+        }
+    }
+
+    returnNet(revenu, couple = false, enfant = 0){
+        let formSim = new FormImpot()
+    
+        formSim.state.couple = couple;
+        formSim.state.enfant = enfant;
+        formSim.state.revenu = revenu;
+        formSim.state.tranche = formSim.calcRessource()[0]
+        formSim.state.part = formSim.calcRessource()[1]
+        formSim.state.taxeMarginal = formSim.calcTaxeMarginal()
+        return formSim.calcNet()
+    }
+
+    returnReverse(netApresImpot){
+        let revenu = netApresImpot
+        while(netApresImpot != this.returnNet(revenu, this.state.couple, this.state.enfant)){
+            revenu++
+        }
+        this.setState({revenuReverse: revenu})
+    }
+
     render(){
         return <div>
             <h3>Ressources et famille</h3> 
@@ -114,6 +165,22 @@ class FormImpot extends React.Component{
                 <label forHtml="enfant"> Nombre d'enfants </label>
                 <input type="number" min="0" id="enfant" name="enfant" value={this.state.enfant}  onChange={this.handleChange}/>
             </div>
+
+            <h3>Boss : Reverse</h3> 
+            <div className="formGRP">           
+                <label forHtml="reversevalue"> Net restant </label>
+                <input type="number" min="0" id="reversevalue" name="reversevalue" value={this.state.netCalc} onChange={this.reverse} />
+            </div> 
+            <table>
+                <tr>
+                    <th>Nombre de part</th>
+                    <td>{this.state.part}</td>
+                </tr>
+                <tr>
+                    <th>Revenu</th>
+                    <td>{this.state.revenuReverse + " €"}</td>
+                </tr>       
+            </table> 
 
             <h3>Votre impot</h3>
             <table>
