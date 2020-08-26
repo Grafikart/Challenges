@@ -1,12 +1,11 @@
 body{
-    background-color: rgb(27, 138, 146);
+    background-color: rgb(182, 212, 176);
+    color: black;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     font-family: 'PT Sans Narrow', sans-serif;
 }
 #main{
@@ -16,25 +15,28 @@ body{
     height: 500px;
 }
 
-input{
-    border: 3px solid black;
-}
-
 .formGRP{
     margin: 10px;
 }
 
-table{
-    border: 1px solid #000;
-}
 td{
     border: 1px solid #000;
     text-align: center;
+    width: 400px;
+    background-color: rgb(217, 235, 219);
 }
 th{
     font-size: 1em;
     border: 1px solid #000;
+    width: 100px ;
+    background-color: rgb(179, 219, 183);
 }
 .plafond{
     font-size: 0.8em;
+}
+
+h3{
+    background-color: rgb(143, 199, 146);
+    color: black;
+    padding: 5px;
 }

@@ -1,6 +1,5 @@
 //***************************************************************************************************** */
-//                                           Challenge Grafikart : impots js
-//                                           Solution en React proposé par jbco.fr
+//                                  Challenge Grafikart : impots js
 //***************************************************************************************************** */
 
 const PLAFOND = [0, 10064, 25659, 73369, 157806]
@@ -14,17 +13,21 @@ const TRANCHE5 = 4
 
 const MAXTAXE = [
     0,
-    ( PLAFOND[TRANCHE3] - (PLAFOND[TRANCHE2] + 1) ) * TAUX[TRANCHE2],
-    ( PLAFOND[TRANCHE4] - (PLAFOND[TRANCHE3] + 1) ) * TAUX[TRANCHE3],
-    ( PLAFOND[TRANCHE5] - (PLAFOND[TRANCHE4] + 1) ) * TAUX[TRANCHE4]
+    (( PLAFOND[TRANCHE3] - (PLAFOND[TRANCHE2] + 1) ) * TAUX[TRANCHE2]).toFixed(2),
+    (( PLAFOND[TRANCHE4] - (PLAFOND[TRANCHE3] + 1) ) * TAUX[TRANCHE3]).toFixed(2),
+    (( PLAFOND[TRANCHE5] - (PLAFOND[TRANCHE4] + 1) ) * TAUX[TRANCHE4]).toFixed(2)
 ]
 
 //***************************************************************************************************** */
-//                                           Fonctionnement :
+//                                  Fonctionnement :
 //
-//
-//
-//
+// 1 - saisie input de l'user appel handleChange() 
+// 2 - handleChange() appel en callBack calcRessources() 
+// 3 - calcRessource() appel en callBack calcTaxeMarginal()
+// 4 - le render() appel 
+//                  calcTaxeTotal()             calcule la valeur total de la taxe
+//                  calcNet()                   calcule le net restant
+//                  taxeParTranche(TRANCHE)     renvois la valeur de la taxe suivant la tranche
 //***************************************************************************************************** */
 
 class FormImpot extends React.Component{
@@ -60,7 +63,6 @@ class FormImpot extends React.Component{
         else if (REVENU > PLAFOND[TRANCHE3]) {trancheMarginal = TRANCHE3}
         else if (REVENU > PLAFOND[TRANCHE2]) {trancheMarginal = TRANCHE2}
         else {trancheMarginal = TRANCHE1}
-        
         this.setState({tranche: trancheMarginal, part: PART}, ()=> this.calcTaxeMarginal())
     }
 
@@ -76,56 +78,90 @@ class FormImpot extends React.Component{
         this.setState({taxeMarginal: taxe * PART})
     }
 
-    calcTaxeTotal(TRANCHE){
-        let total =0;
+    // Calcule la somme de toute les tranches d'imposition
+    calcTaxeTotal(){
+        const TRANCHE = this.state.tranche
+        let total = 0;
         for (let i = 1; i < TRANCHE; i ++){
-            total += MAXTAXE[i]
+            total += parseInt(MAXTAXE[i])
         }
         total += this.state.taxeMarginal
         return total
+    }
+
+    // Calcule le net restant apres deduction des taxes
+    calcNet(){
+        return this.state.revenu - Math.round(this.calcTaxeTotal(this.state.tranche))
+    }
+
+    // Calcule la valeur de taxe de la tranche
+    taxeParTranche(TRANCHE){
+        return this.state.tranche > TRANCHE ? MAXTAXE[TRANCHE] : this.state.tranche == TRANCHE ? this.state.taxeMarginal.toFixed(2) : 0
     }
 
     render(){
         return <div>
             <h3>Ressources et famille</h3> 
             <div className="formGRP">           
-                <label forHtml="revenu"> Revenu do foyée </label>
-                <input type="number" id="revenu" name="revenu" value={this.state.revenu} onChange={this.handleChange} />
+                <label forHtml="revenu"> Revenu du foyée </label>
+                <input type="number" min="0" id="revenu" name="revenu" value={this.state.revenu} onChange={this.handleChange} />
             </div>
             <div className="formGRP">            
-                <label forHtml="couple"> En Couple </label>
+                <label forHtml="couple"> Je suis marié/pacsé </label>
                 <input type="checkbox" id="couple" name="couple" value={this.state.couple} onChange={this.handleChange} />
             </div>
             <div className="formGRP">
                 <label forHtml="enfant"> Nombre d'enfants </label>
-                <input type="number" id="enfant" name="enfant" value={this.state.enfant}  onChange={this.handleChange}/>
+                <input type="number" min="0" id="enfant" name="enfant" value={this.state.enfant}  onChange={this.handleChange}/>
             </div>
-            
-            <h3>Détail de la taxe</h3> 
+
+            <h3>Votre impot</h3>
             <table>
                 <tr>
-                    <th>Tranche 1 <p className="plafond"> {PLAFOND[TRANCHE1]}    à {PLAFOND[TRANCHE2]} € </p></th>
-                    <th>Tranche 2 <p className="plafond"> {PLAFOND[TRANCHE2] +1} à {PLAFOND[TRANCHE3]} € </p></th>
-                    <th>Tranche 3 <p className="plafond"> {PLAFOND[TRANCHE3] +1} à {PLAFOND[TRANCHE4]} € </p></th>
-                    <th>Tranche 4 <p className="plafond"> {PLAFOND[TRANCHE4] +1} à {PLAFOND[TRANCHE5]} € </p></th>
-                    <th>Tranche 5 <p className="plafond"> plus de {PLAFOND[TRANCHE5]+1} € </p></th>
                     <th>TOTAL</th>
+                    <td>{Math.round(this.calcTaxeTotal()) + " €"}</td>
+                </tr>      
+                <tr>
+                    <th>NET restant </th>
+                    <td>{ this.calcNet() + " €"}</td>
+                </tr>    
+            </table>  
+
+            <h3>Impots par tranche</h3>
+            <table>
+                <tr>
+                    <th>Tranche 5 <p className="plafond"> plus de {PLAFOND[TRANCHE5]+1} € </p></th>
+                    <td>{this.taxeParTranche(TRANCHE5)} €</td>
                 </tr>     
                 <tr>
+                    <th>Tranche 4 <p className="plafond"> {PLAFOND[TRANCHE4] +1} à {PLAFOND[TRANCHE5]} € </p></th>
+                    <td>{this.taxeParTranche(TRANCHE4)} €</td>              
+                </tr> 
+                <tr>
+                    <th>Tranche 3 <p className="plafond"> {PLAFOND[TRANCHE3] +1} à {PLAFOND[TRANCHE4]} € </p></th>
+                    <td>{this.taxeParTranche(TRANCHE3)} €</td>
+                </tr>     
+                <tr>
+                    <th>Tranche 2 <p className="plafond"> {PLAFOND[TRANCHE2] +1} à {PLAFOND[TRANCHE3]} € </p></th>
+                    <td>{this.taxeParTranche(TRANCHE2)} €</td>
+                </tr> 
+                <tr>
+                    <th>Tranche 1 <p className="plafond"> {PLAFOND[TRANCHE1]}    à {PLAFOND[TRANCHE2]} € </p></th>
                     <td>0 €</td>
-                    <td>{this.state.tranche > TRANCHE2 ? MAXTAXE[TRANCHE2] : this.state.tranche == TRANCHE2 ? this.state.taxeMarginal : 0} €</td>
-                    <td>{this.state.tranche > TRANCHE3 ? MAXTAXE[TRANCHE3] : this.state.tranche == TRANCHE3 ? this.state.taxeMarginal : 0} €</td>
-                    <td>{this.state.tranche > TRANCHE4 ? MAXTAXE[TRANCHE4] : this.state.tranche == TRANCHE4 ? this.state.taxeMarginal : 0} €</td>
-                    <td>{this.state.tranche > TRANCHE5 ? MAXTAXE[TRANCHE5] : this.state.tranche == TRANCHE5 ? this.state.taxeMarginal : 0} €</td>
-                    <td>{Math.trunc(this.calcTaxeTotal(this.state.tranche)) + " €"}</td>
-                </tr>        
-            </table>
+                </tr>   
+            </table> 
 
-            <h3>Reste NET</h3>
-            <div className="formGRP">
-                <p>Votre Net : {this.state.revenu - Math.trunc(this.calcTaxeTotal(this.state.tranche)) + " €"} </p>             
-            </div>            
-
+            <h3>Quotiens familial et part</h3>      
+            <table>
+                <tr>
+                    <th>Nombre de part</th>
+                    <td>{this.state.part}</td>
+                </tr>      
+                <tr>
+                    <th>quotiens familial </th>
+                    <td>{(this.state.revenu / this.state.part).toFixed(2)} €</td>
+                </tr>    
+            </table> 
         </div>
     }
 }
