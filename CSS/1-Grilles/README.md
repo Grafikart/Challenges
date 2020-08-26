@@ -50,6 +50,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - georges - https://jsfiddle.net/dan_georges/opds19wm/ (template area)
 - Tatal - https://jsfiddle.net/ametthey/gL7qy5us/68/ (template area)
 - avallete - https://codesandbox.io/s/grafikart-css-challenge-01-bppic
+- gturpin - https://codepen.io/ThPrGanesha/pen/VwvGYMW?editors=1100 (grid + flex)
 
 ### Flex
 
@@ -69,6 +70,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - jam83 - https://codesandbox.io/s/agitated-dew-8gnl4
 - stevar - https://jsfiddle.net/stevar/ck3sq2Lw/2/#&togetherjs=6fJUkr3Ulj (pb d'alignement de champs & tabulation)
 - Nicolas41 - https://codesandbox.io/s/tender-pine-1thci
+- Jam8310 - https://codesandbox.io/s/agitated-dew-8gnl4 
 
 ## Float
 
