@@ -34,6 +34,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 ## VueJS
 
 - @Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
+- @aschelch : https://jsfiddle.net/aschelch/a9emwd1t/9/
 
 ## Svelte
 
