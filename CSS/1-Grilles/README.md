@@ -71,6 +71,7 @@ Vous pouvez éditer ce fichier directement sur github en mettant votre pseudo su
 - stevar - https://jsfiddle.net/stevar/ck3sq2Lw/2/#&togetherjs=6fJUkr3Ulj (pb d'alignement de champs & tabulation)
 - Nicolas41 - https://codesandbox.io/s/tender-pine-1thci
 - Jam8310 - https://codesandbox.io/s/agitated-dew-8gnl4 
+- cissoko23 - https://jsfiddle.net/cissoko23/xsLb6v83/1/
 
 ## Float
 
