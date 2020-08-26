@@ -25,4 +25,6 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 
 # Solutions :
 
+## React
+
 @Mania#6276 : [CodeSandbox](https://codesandbox.io/s/github/MathisBarre/grafikart-challenge-impots) - [CodeSandbox Livetest](https://sl8sp.csb.app/)
