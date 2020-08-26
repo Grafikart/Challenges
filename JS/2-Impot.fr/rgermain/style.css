@@ -1,0 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+.from > * + * {
+    margin-top: 2rem;
+}
+.tab-recap > * + * {
+    border-top-width: 2px;
+    border-color: white;
+}
+.text-tab {
+    position: absolute;
+    bottom: calc(-1em + (2px / 2));
+    left: 0;
+    padding: 0 1em;
+    z-index: 10;
+    background-color: inherit;
+}
+.text-tab-percent {
+    bottom: -.5rem;
+}

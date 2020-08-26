@@ -13,7 +13,7 @@ Pour commencer on souhaite créer un formulaire dans lequel on va entrée la som
 
 ## Niveau 2
 
-On ajoutera une case à cocher pour préciser si on est en couble et un autre champs nous permettra de préciser le nombre d'enfant. En fonction de ces nouvelles données le système adaptera le taux.
+On ajoutera une case à cocher pour préciser si on est en couple et un autre champs nous permettra de préciser le nombre d'enfant. En fonction de ces nouvelles données le système adaptera le taux.
 
 ## Niveau 3
 
@@ -23,6 +23,19 @@ On souhaite avoir un détail du montant que l'on paye par tranche. Le système a
 
 Pour l'exercice final on prendra le problème en sens inverse et on permettra à l'utilisateur d'entrer la somme désiré (après impôt) et le système calculera les revenus net à avoir pour obtenir cette somme après l'imposition.
 
-# Les solutions
+# Solutions :
 
+## React
+
+- @Mania#6276 : [CodeSandbox](https://codesandbox.io/s/github/MathisBarre/grafikart-challenge-impots) - [CodeSandbox Livetest](https://sl8sp.csb.app/)
+- @LemaireJean-Baptiste : [CodeSandbox](https://codesandbox.io/s/grafikart-challenge-tax-calculator-jbl-dr8zo)
+- @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i (Typescript)
+
+## VueJS
+
+- @Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
 - @aschelch : https://jsfiddle.net/aschelch/a9emwd1t/9/
+
+## Svelte
+
+- @PeufOne: https://codesandbox.io/s/wandering-morning-g7ow0
