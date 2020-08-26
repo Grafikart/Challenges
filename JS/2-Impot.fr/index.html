@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
     <title>Calcule impot</title>
 
     <style>
@@ -12,10 +16,23 @@
         padding: 0;
         margin: 0;
       }
+      html,
+      body {
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        font-size: 15px;
+      }
       .container {
         width: 950px;
         max-width: calc(100% - 1em);
         margin: 0 auto;
+        margin-bottom: 2em;
+      }
+      input {
+        padding: 0.4em 0;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
       }
       ::-webkit-input-placeholder {
         color: rgba(0, 0, 0, 0.5);
@@ -105,9 +122,20 @@
         justify-content: space-around;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        margin: 0.4em 0;
       }
-
+      .form .options .form-wrapper {
+        margin: 1em 0;
+      }
+      .form .form-wrapper.tax,
+      .form .options .form-wrapper:not(:last-child) {
+        margin-right: 0.8em;
+      }
+      .form .options input {
+        min-width: 250px;
+      }
+      .form .options select#statut {
+        transform: translateY(12px);
+      }
       .title {
         text-align: center;
         font-size: 2rem;
@@ -136,9 +164,10 @@
         justify-content: space-between;
       }
       .tax_details .head {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         margin-bottom: 0.4em;
+        color: #1f2c4f;
       }
       .tax_details .sections {
         position: relative;
@@ -256,7 +285,7 @@
               placeholder="Votre revenu annuel"
             />
           </div>
-          <div class="form-wrapper">
+          <div class="form-wrapper tax">
             <label for="tax" class="label_control">Impot</label>
             <input
               type="text"
