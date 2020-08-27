@@ -21,133 +21,67 @@ const MAXTAXE = [
 ]
 
 //***************************************************************************************************** */
-//                                  Fonctionnement :
-//
-// 1 - saisie input de l'user appel handleChange() 
-// 2 - handleChange() appel en callBack calcRessources() 
-// 3 - calcRessource() appel en callBack calcTaxeMarginal()
-// 4 - le render() appel 
-//                  calcTaxeTotal()             calcule la valeur total de la taxe
-//                  calcNet()                   calcule le net restant
-//                  taxeParTranche(TRANCHE)     renvois la valeur de la taxe suivant la tranche
-//
-//                                  Fonctionnement reverse:
-//
-// 1 - saisie input de l'user 'net restant' appel reverse()
-// 2 - reverse() appel returnReverse() qui renvois le revenu à avoir pour toucher le salaire 'net restant' demandé par l'utilisateur
-//          Pour trouver le résultat la méthode returnReverse() appel returnNet() qui retourne le salaire NET apres impots pour un revenu
-//          De base on essaye avec la meme valeur que le net demander et on incrémente de 1
-//          Tant que la valeur retourner par returnNet() n'est pas égal à la valeur souhaiter on continue
+
+//                                  React Component
+
 //***************************************************************************************************** */
 
 class FormImpot extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+
+            // Input du formulaire
             revenu: 0,
-            taxeMarginal: 0,
             enfant: 0,
             couple: false,
-            part: 1,
             netCalc: 0,
+
+            // Calcules fait par la class CalcImpot()
+            taxeTotal: 0,
+            taxeMarginal: 0,
+            trancheMarginal: 0,
+            netRest: 0,
+            part: 0,
             revenuReverse: 0
         }
         this.handleChange = this.handleChange.bind(this)
-        this.reverse = this.reverse.bind(this)
+
+        // Notre class utilitaire qui s'occupe des calcules
+        this.calc = new CalcImpot()
     }
     
-    // Update les state avec les champs remplis par l'utilisateur puis appel calcRessource() en callBack
+    // pour toute modification des input du formulaire on réalise des calcules
     handleChange(e){
         let name = e.target.name
         let type = e.target.type
         let value = type === 'checkbox' ? e.target.checked : parseInt(e.target.value)
         
-        this.setState({[name]: value}, ()=> this.calcRessource())
-        if (name == 'couple' | name == 'enfant'){
-            this.reverse(null)
-        } 
+        this.setState({[name]: value}, ()=>{this.calcRender();this.calcReverseRender()})
     }
 
-    // Calcule du taux marginal, du nombre de part puis appel calcTaxeMarginal() en callBack
-    calcRessource(){
-        const PART = 1 + (this.state.enfant / 2) + (this.state.couple == true ? 1 : 0);
-        const REVENU = this.state.revenu / PART
-        let trancheMarginal;
-        
-        if      (REVENU > PLAFOND[TRANCHE5]) {trancheMarginal = TRANCHE5}
-        else if (REVENU > PLAFOND[TRANCHE4]) {trancheMarginal = TRANCHE4}
-        else if (REVENU > PLAFOND[TRANCHE3]) {trancheMarginal = TRANCHE3}
-        else if (REVENU > PLAFOND[TRANCHE2]) {trancheMarginal = TRANCHE2}
-        else {trancheMarginal = TRANCHE1}
-        this.setState({tranche: trancheMarginal, part: PART}, ()=> this.calcTaxeMarginal())
-
-        return [trancheMarginal, PART]
+    // Calcule de l'imposition à partir d'un revenu
+    calcRender(){
+        this.calc.setState(this.state.revenu, this.state.enfant, this.state.couple)
+        this.setState({
+            taxeTotal: this.calc.calcTaxeTotal(),
+            taxeMarginal: this.calc.calcTaxeMarginal(),
+            trancheMarginal: this.calc.calcTrancheMarginal(),
+            netRest: this.calc.calcNet(),
+            part : this.calc.calcPart()          
+        })
     }
 
-    // Calcule de la taxe de la tranche marginal SI les revenu sont au dessus de la tranche 1 (+10064€)
-    calcTaxeMarginal(){
-        const PART = this.state.part
-        const REVENU = this.state.revenu / PART
-        const TRANCHE = this.state.tranche
-        let taxe;
-        
-        TRANCHE != 0 ? taxe = ( REVENU - ( PLAFOND[TRANCHE] + 1 ) ) * TAUX[TRANCHE] : taxe = 0
-
-        this.setState({taxeMarginal: taxe * PART})
-
-        return taxe * PART
+    // Calcule de l'imposition à partir d'un NET restant
+    calcReverseRender(){
+        this.setState({
+            revenuReverse: this.calc.returnReverse(this.state.netCalc, this.state.enfant, this.state.couple)
+        })
+        this.test()
     }
 
-    // Calcule la somme de toute les tranches d'imposition
-    calcTaxeTotal(){
-        const TRANCHE = this.state.tranche
-        let total = 0;
-        for (let i = 1; i < TRANCHE; i ++){
-            total += parseInt(MAXTAXE[i])
-        }
-        total += this.state.taxeMarginal
-        return total
-    }
+    test(){
 
-    // Calcule le net restant apres deduction des taxes
-    calcNet(){
-        return this.state.revenu - Math.round(this.calcTaxeTotal(this.state.tranche))
-    }
-
-    // Calcule la valeur de taxe de la tranche
-    taxeParTranche(TRANCHE){
-        return this.state.tranche > TRANCHE ? MAXTAXE[TRANCHE] : this.state.tranche == TRANCHE ? this.state.taxeMarginal.toFixed(2) : 0
-    }
-
-    reverse(e){
-        if (e == null){
-            let value = this.state.netCalc
-            this.setState({netCalc : value}, () => {this.returnReverse(value)})
-            this.calcRessource()
-        }else{
-            let value = e.target.value
-            this.setState({netCalc : value}, () => {this.returnReverse(value)})
-        }
-    }
-
-    returnNet(revenu, couple = false, enfant = 0){
-        let formSim = new FormImpot()
-    
-        formSim.state.couple = couple;
-        formSim.state.enfant = enfant;
-        formSim.state.revenu = revenu;
-        formSim.state.tranche = formSim.calcRessource()[0]
-        formSim.state.part = formSim.calcRessource()[1]
-        formSim.state.taxeMarginal = formSim.calcTaxeMarginal()
-        return formSim.calcNet()
-    }
-
-    returnReverse(netApresImpot){
-        let revenu = netApresImpot
-        while(netApresImpot != this.returnNet(revenu, this.state.couple, this.state.enfant)){
-            revenu++
-        }
-        this.setState({revenuReverse: revenu})
     }
 
     render(){
@@ -166,10 +100,10 @@ class FormImpot extends React.Component{
                 <input type="number" min="0" id="enfant" name="enfant" value={this.state.enfant}  onChange={this.handleChange}/>
             </div>
 
-            <h3>Boss : Reverse</h3> 
+            <h3>Reverse tax &copy;</h3> 
             <div className="formGRP">           
-                <label forHtml="reversevalue"> Net restant </label>
-                <input type="number" min="0" id="reversevalue" name="reversevalue" value={this.state.netCalc} onChange={this.reverse} />
+                <label forHtml="netCalc"> Net restant </label>
+                <input type="number" min="0" id="netCalc" name="netCalc" value={this.state.netCalc} onChange={this.handleChange} />
             </div> 
             <table>
                 <tr>
@@ -184,13 +118,17 @@ class FormImpot extends React.Component{
 
             <h3>Votre impot</h3>
             <table>
+            <tr>
+                    <th>Nombre de part</th>
+                    <td>{this.state.part}</td>
+                </tr>    
                 <tr>
                     <th>TOTAL</th>
-                    <td>{Math.round(this.calcTaxeTotal()) + " €"}</td>
+                    <td>{this.state.taxeTotal + " €"}</td>
                 </tr>      
                 <tr>
                     <th>NET restant </th>
-                    <td>{ this.calcNet() + " €"}</td>
+                    <td>{ this.state.netRest + " €"}</td>
                 </tr>    
             </table>  
 
@@ -198,40 +136,197 @@ class FormImpot extends React.Component{
             <table>
                 <tr>
                     <th>Tranche 5 <p className="plafond"> plus de {PLAFOND[TRANCHE5]+1} € </p></th>
-                    <td>{this.taxeParTranche(TRANCHE5)} €</td>
+                    <td>{this.calc.taxeTranche(TRANCHE5)} €</td>
                 </tr>     
                 <tr>
                     <th>Tranche 4 <p className="plafond"> {PLAFOND[TRANCHE4] +1} à {PLAFOND[TRANCHE5]} € </p></th>
-                    <td>{this.taxeParTranche(TRANCHE4)} €</td>              
+                    <td>{this.calc.taxeTranche(TRANCHE4)} €</td>              
                 </tr> 
                 <tr>
                     <th>Tranche 3 <p className="plafond"> {PLAFOND[TRANCHE3] +1} à {PLAFOND[TRANCHE4]} € </p></th>
-                    <td>{this.taxeParTranche(TRANCHE3)} €</td>
+                    <td>{this.calc.taxeTranche(TRANCHE3)} €</td>
                 </tr>     
                 <tr>
                     <th>Tranche 2 <p className="plafond"> {PLAFOND[TRANCHE2] +1} à {PLAFOND[TRANCHE3]} € </p></th>
-                    <td>{this.taxeParTranche(TRANCHE2)} €</td>
+                    <td>{this.calc.taxeTranche(TRANCHE2)} €</td>
                 </tr> 
                 <tr>
                     <th>Tranche 1 <p className="plafond"> {PLAFOND[TRANCHE1]}    à {PLAFOND[TRANCHE2]} € </p></th>
                     <td>0 €</td>
                 </tr>   
             </table> 
-
-            <h3>Quotiens familial et part</h3>      
-            <table>
-                <tr>
-                    <th>Nombre de part</th>
-                    <td>{this.state.part}</td>
-                </tr>      
-                <tr>
-                    <th>quotiens familial </th>
-                    <td>{(this.state.revenu / this.state.part).toFixed(2)} €</td>
-                </tr>    
-            </table> 
         </div>
     }
 }
+
+//***************************************************************************************************** */
+
+//                                  Classe utilitaire de calcule
+
+//***************************************************************************************************** */
+
+
+
+class CalcImpot {
+    constructor(revenu = 0, nbEnfant = 0, concubin = false){
+        this.state = {
+            nbEnfant: nbEnfant,
+            concubin: concubin,
+            revenu: revenu
+        }
+    }
+
+    setState(revenu, nbEnfant = 0, concubin = false){
+        this.state = {
+            nbEnfant: nbEnfant,
+            concubin: concubin,
+            revenu: revenu
+        }
+    }
+
+    // Retourne le nombre de part
+    calcPart(nbEnfant = this.state.nbEnfant, concubin = this.state.concubin){
+        return 1 + (nbEnfant / 2) + (concubin == true ? 1 : 0)
+    }
+
+    // Retourne le quotiens familliale
+    calcQuotiens(revenu, part){
+        return (revenu / part)
+    }
+
+    // Retourne l'index de la tranche marginal sur laquel un calcul est necessaire
+    calcTrancheMarginal(revenu = this.state.revenu){
+        let tranche;
+        
+        if      (revenu > PLAFOND[TRANCHE5]) {tranche = TRANCHE5}
+        else if (revenu > PLAFOND[TRANCHE4]) {tranche = TRANCHE4}
+        else if (revenu > PLAFOND[TRANCHE3]) {tranche = TRANCHE3}
+        else if (revenu > PLAFOND[TRANCHE2]) {tranche = TRANCHE2}
+        else {tranche = TRANCHE1}      
+        
+        return tranche
+    }
+
+    // renvois la taxe total du au impot arrondi au plus proche
+    calcTaxeTotal(revenu = this.state.revenu, nbEnfant = this.state.nbEnfant, concubin = this.state.concubin){
+        const PART = this.calcPart(nbEnfant, concubin)
+        const QUOTIENS = this.calcQuotiens(revenu, PART)
+        const TRANCHE = this.calcTrancheMarginal(QUOTIENS)
+        let total = 0;        
+
+        for (let i = 1; i < TRANCHE; i ++){
+            total += parseFloat(MAXTAXE[i])
+        }
+
+        total += this.calcTaxeMarginal(revenu, nbEnfant, concubin)
+
+        return Math.round(total * PART)
+    }
+
+    // calcule la taxe de la tranche marginal arrondi à 2 chiffre apres la virgule
+    calcTaxeMarginal(revenu = this.state.revenu, nbEnfant = this.state.nbEnfant, concubin = this.state.concubin){
+        const PART = this.calcPart(nbEnfant, concubin)
+        const REVENU = this.calcQuotiens(revenu, PART)
+        const TRANCHE = this.calcTrancheMarginal(REVENU)  
+        let taxeMarginal = 0;
+
+        
+        if (TRANCHE != 0){
+            taxeMarginal = ( REVENU - ( PLAFOND[TRANCHE] + 1 ) ) * TAUX[TRANCHE]
+        }   
+
+        return parseFloat(taxeMarginal.toFixed(2)) 
+    }
+
+    // Calcule le net restant apres deduction des taxes
+    calcNet(revenu = this.state.revenu, nbEnfant = this.state.nbEnfant, concubin = this.state.concubin){
+        return revenu - this.calcTaxeTotal(revenu, nbEnfant, concubin)
+    }
+
+    // Calcule la valeur de taxe de la tranche demandé
+    taxeTranche(trancheCible, revenu = this.state.revenu, nbEnfant = this.state.nbEnfant, concubin = this.state.concubin){
+        const PART = this.calcPart(nbEnfant, concubin)
+        const REVENU = this.calcQuotiens(revenu, PART)
+        const TRANCHE = this.calcTrancheMarginal(REVENU)
+        let taxe = 0;
+
+        // si la tranche demandé est inférieur à la tranche marginal on donne le taux plein
+        if ( trancheCible < TRANCHE ){
+            taxe = MAXTAXE[trancheCible]
+        // si la tranche demandé est la tranche marginal on calcule la valeur de la taxe
+        } else if (trancheCible == TRANCHE){
+            taxe = this.calcTaxeMarginal(revenu,nbEnfant,concubin)
+        // la tranche demandé est supérieur à la tranche marginal, on ne doit rien
+        }else{
+            taxe = 0
+        }
+
+        return (taxe * PART)
+    }
+
+    // Calcule inverser, on fournis une valeur net APRES impot pour que ça nous renvois la valeur AVANT impot qu'il faut
+    returnReverse(netTarget, nbEnfant = 0, concubin = false){
+        let revenu = netTarget
+
+        while(netTarget != this.calcNet(revenu, nbEnfant, concubin)){
+            revenu++
+        }
+
+        return revenu
+    }
+}
+
+//***************************************************************************************************** */
+
+//                                  Zone de test Console
+
+//***************************************************************************************************** */
+
+// On créer un nouveau CalcImpot qui nous permet de faire tout nos calcule
+let calc = new CalcImpot();
+
+// Jeu de test
+let test = function(revenu = 32000, enfant = 0, concubin = false){
+    calc.setState(revenu,enfant,concubin)
+    console.log("------------RESSOURCE------------")
+    console.log("***Revenu : " + calc.state.revenu)
+    console.log("***PART : " + calc.calcPart())
+
+    console.log("------------TAXE------------")
+    console.log("***TOTAL TAXE : " + calc.calcTaxeTotal())
+    console.log("***NET restant : " + calc.calcNet())
+
+    console.log("------------DETAIL------------")
+    console.log("***Tranche 1 : 0 ")
+    console.log("***Tranche 2 : " + calc.taxeTranche(TRANCHE2))
+    console.log("***Tranche 3 : " + calc.taxeTranche(TRANCHE3))
+    console.log("***Tranche 4 : " + calc.taxeTranche(TRANCHE4))
+    console.log("***Tranche 5 : " + calc.taxeTranche(TRANCHE5))
+}
+
+let reverse = function(revenu = 32000, enfant = 0, concubin = false){
+    console.log("Revenu à avoir : " + calc.returnReverse(revenu, enfant, concubin) + " Pour obtenir " + revenu)
+}
+
+let oulala = function(){
+    console.log("Nan mais oh, je vais pas te montrer ce que j'ai sous le capot comme ça ;)")
+}
+
+console.log("Bonjour User :)")
+console.log("")
+console.log("Pour un Revenu de 32000, avec 3 enfants et marié(=true) faite : ")
+console.log("test(32000,3,true)")
+console.log("")
+console.log("Pour obtenir un revenu à partir d'un net restant faite : ")
+console.log("reverse(32000,3,true)")
+console.log("")
+console.log("Pour un moment hot avec des boucles de ta région faite oulala()")
+
+//***************************************************************************************************** */
+
+//                                  ReactDOM
+
+//***************************************************************************************************** */
 
 const main = document.getElementById('main');
 ReactDOM.render(<FormImpot />, main)
