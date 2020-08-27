@@ -101,15 +101,12 @@ class FormImpot extends React.Component{
             </div>
 
             <h3>Reverse tax &copy;</h3> 
+            <p>Faite varier votre nombres de part en jouant avec les champs de formulaire nombre d'enfants et la checkbox marié/pacsé</p>
             <div className="formGRP">           
                 <label forHtml="netCalc"> Net restant </label>
                 <input type="number" min="0" id="netCalc" name="netCalc" value={this.state.netCalc} onChange={this.handleChange} />
             </div> 
             <table>
-                <tr>
-                    <th>Nombre de part</th>
-                    <td>{this.state.part}</td>
-                </tr>
                 <tr>
                     <th>Revenu</th>
                     <td>{this.state.revenuReverse + " €"}</td>
@@ -265,11 +262,14 @@ class CalcImpot {
     }
 
     // Calcule inverser, on fournis une valeur net APRES impot pour que ça nous renvois la valeur AVANT impot qu'il faut
+    // TODO optimisatisation en cours
     returnReverse(netTarget, nbEnfant = 0, concubin = false){
-        let revenu = netTarget
+        // si imposition maximal = 45%
+        let max = Math.floor(netTarget * 1.83)
+        let revenu = max;
 
-        while(netTarget != this.calcNet(revenu, nbEnfant, concubin)){
-            revenu++
+        while((netTarget != this.calcNet(revenu, nbEnfant, concubin))){
+            revenu--
         }
 
         return revenu
