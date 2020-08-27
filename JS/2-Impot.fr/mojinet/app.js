@@ -57,7 +57,16 @@ class FormImpot extends React.Component{
         let type = e.target.type
         let value = type === 'checkbox' ? e.target.checked : parseInt(e.target.value)
         
-        this.setState({[name]: value}, ()=>{this.calcRender();this.calcReverseRender()})
+        if (name == 'netCalc'){
+            this.setState({[name]: value}, ()=>{
+                this.calcReverseRender()  
+            })
+
+        } else{
+            this.setState({[name]: value}, ()=>{
+                this.calcRender() 
+            })
+        }
     }
 
     // Calcule de l'imposition à partir d'un revenu
@@ -68,20 +77,23 @@ class FormImpot extends React.Component{
             taxeMarginal: this.calc.calcTaxeMarginal(),
             trancheMarginal: this.calc.calcTrancheMarginal(),
             netRest: this.calc.calcNet(),
-            part : this.calc.calcPart()          
+            part : this.calc.calcPart(),
+            netCalc: this.calc.calcNet()   
         })
     }
 
     // Calcule de l'imposition à partir d'un NET restant
     calcReverseRender(){
+        this.calc.setState(this.state.netCalc, this.state.enfant, this.state.couple)
         this.setState({
-            revenuReverse: this.calc.returnReverse(this.state.netCalc, this.state.enfant, this.state.couple)
+            revenuReverse: this.calc.returnReverse(this.state.netCalc, this.state.enfant, this.state.couple),
+            taxeTotal: this.calc.calcTaxeTotal(),
+            taxeMarginal: this.calc.calcTaxeMarginal(),
+            trancheMarginal: this.calc.calcTrancheMarginal(),
+            netRest: this.calc.calcNet(),
+            part : this.calc.calcPart(),
+            revenu : this.calc.returnReverse(this.state.netCalc, this.state.enfant, this.state.couple)
         })
-        this.test()
-    }
-
-    test(){
-
     }
 
     render(){
@@ -115,7 +127,7 @@ class FormImpot extends React.Component{
 
             <h3>Votre impot</h3>
             <table>
-            <tr>
+                <tr>
                     <th>Nombre de part</th>
                     <td>{this.state.part}</td>
                 </tr>    
@@ -161,8 +173,6 @@ class FormImpot extends React.Component{
 //                                  Classe utilitaire de calcule
 
 //***************************************************************************************************** */
-
-
 
 class CalcImpot {
     constructor(revenu = 0, nbEnfant = 0, concubin = false){
@@ -258,15 +268,16 @@ class CalcImpot {
             taxe = 0
         }
 
-        return (taxe * PART)
+        return (taxe * PART).toFixed(2)
     }
 
     // Calcule inverser, on fournis une valeur net APRES impot pour que ça nous renvois la valeur AVANT impot qu'il faut
-    // TODO optimisatisation en cours
     returnReverse(netTarget, nbEnfant = 0, concubin = false){
         // si imposition maximal = 45%
         let max = Math.floor(netTarget * 1.83)
         let revenu = max;
+        //
+        let tmpRevenu
 
         while((netTarget != this.calcNet(revenu, nbEnfant, concubin))){
             revenu--
@@ -309,7 +320,10 @@ let reverse = function(revenu = 32000, enfant = 0, concubin = false){
 }
 
 let oulala = function(){
-    console.log("Nan mais oh, je vais pas te montrer ce que j'ai sous le capot comme ça ;)")
+    console.log("Survol le petit bonhomme en haut avec ta souris ;)")
+    let dollard = document.getElementById('mrdollard')
+    dollard.addEventListener('mouseover', ()=>{dollard.setAttribute("src", "https://jbco.fr/other/mrdollardpoil.gif")})
+    dollard.addEventListener('mouseleave', ()=>{dollard.setAttribute("src", "https://jbco.fr/other/mrdollard.gif")})
 }
 
 console.log("Bonjour User :)")
@@ -320,7 +334,7 @@ console.log("")
 console.log("Pour obtenir un revenu à partir d'un net restant faite : ")
 console.log("reverse(32000,3,true)")
 console.log("")
-console.log("Pour un moment hot avec des boucles de ta région faite oulala()")
+console.log("Tu veux vivre un moment hot tappe oulala()")
 
 //***************************************************************************************************** */
 
