@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <h1>Calcul Impots</h1>
+        <input id="salaire" type="number" name="salaire" onchange="calcul()">
+        <input id="part" type="number" name="part" value="1" onchange="calcul()">
+        <ul>
+            <li>Tranche 0 à 10064 :<span id="0"></span></li>
+            <li>Tranche 10064 à 25660 :<span id="11"></span></li>
+            <li>Tranche 25660 à 73370 :<span id="30"></span></li>
+            <li>Tranche 73370 à 157806 :<span id="41"></span></li>
+            <li>Tranche supérieur à 157806 :<span id="45"></span></li>
+        </ul>
+        <p>Montant impot <span id="total"></span></p>
+    </div>
+</div>
+<script>
+    function calcul() {
+
+        let t11 = 0;
+        let t30 = 0;
+        let t41 = 0;
+        let t45 = 0;
+        let impot = 0;
+
+        let salaire = document.getElementById('salaire').value;
+        let part = document.getElementById('part').value;
+        salaire = salaire / part;
+        if (salaire <= 10064) {
+            t11 = 0;
+            t30 = 0;
+            t41 = 0;
+            t45 = 0;
+            impot = (t11 + t30 + t41 + t45) * part;
+        } else if (salaire <= 25660) {
+            t11 = (salaire - 10064) * 0.11;
+            t30 = 0;
+            t41 = 0;
+            t45 = 0;
+            impot = (t11 + t30 + t41 + t45) * part;
+        } else if (salaire <= 73370) {
+            t11 = (25660 - 10064) * 0.11;
+            t30 = (salaire - 25660) * 0.30;
+            t41 = 0;
+            t45 = 0;
+            impot = (t11 + t30 + t41 + t45) * part;
+        } else if (salaire <= 157806) {
+            t11 = (25660 - 10064) * 0.11;
+            t30 = (73370 - 25660) * 0.30;
+            t41 = (salaire - 73370) * 0.41;
+            t45 = 0;
+            impot = (t11 + t30 + t41 + t45) * part;
+        } else {
+            t11 = (25660 - 10064) * 0.11;
+            t30 = (73370 - 25660) * 0.30;
+            t41 = (157806 - 73370) * 0.41;
+            t45 = (salaire - 157806) * 0.45;
+            impot = (t11 + t30 + t41 + t45) * part;
+        }
+        document.getElementById('0').innerHTML = '0,00 €';
+        document.getElementById('11').innerHTML = t11 + ' €';
+        document.getElementById('30').innerHTML = t30 + ' €';
+        document.getElementById('41').innerHTML = t41 + ' €';
+        document.getElementById('45').innerHTML = t45 + ' €';
+        document.getElementById('total').innerHTML = impot + ' €';
+    }
+</script>
+</body>
+</html>
