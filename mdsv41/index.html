@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <h1>Calcul Impots</h1>
+        <h1>Calcul Impôts avec salaire</h1>
         <input id="salaire" type="number" name="salaire" onchange="calcul()">
         <input id="part" type="number" name="part" value="1" onchange="calcul()">
         <ul>
@@ -18,7 +18,20 @@
             <li>Tranche 73370 à 157806 :<span id="41"></span></li>
             <li>Tranche supérieur à 157806 :<span id="45"></span></li>
         </ul>
-        <p>Montant impot <span id="total"></span></p>
+        <p>Montant impot <span id="totalImpot"></span></p>
+    </div>
+    <div class="row">
+        <h1>Calcul le salaire avec montant Impôt</h1>
+        <input id="impot" type="number" name="impot" onchange="calculInverse()">
+        <input id="parts" type="number" name="parts" value="1" onchange="calculInverse()">
+        <ul>
+            <li>Tranche 0 à 10064 :<span id="r0"></span></li>
+            <li>Tranche 10064 à 25660 :<span id="r11"></span></li>
+            <li>Tranche 25660 à 73370 :<span id="r30"></span></li>
+            <li>Tranche 73370 à 157806 :<span id="r41"></span></li>
+            <li>Tranche supérieur à 157806 :<span id="r45"></span></li>
+        </ul>
+        <p>Montant impot <span id="SalaireCalculer"></span></p>
     </div>
 </div>
 <script>
@@ -69,7 +82,63 @@
         document.getElementById('30').innerHTML = t30 + ' €';
         document.getElementById('41').innerHTML = t41 + ' €';
         document.getElementById('45').innerHTML = t45 + ' €';
-        document.getElementById('total').innerHTML = impot + ' €';
+        document.getElementById('totalImpot').innerHTML = impot + ' €';
+    }
+    function calculInverse() {
+
+        let r0 = 0;
+        let r11 = 0;
+        let r30 = 0;
+        let r41 = 0;
+        let r45 = 0;
+        let SalaireCalculer = 0;
+
+        let impot = document.getElementById('impot').value;
+        let parts = document.getElementById('parts').value;
+        impot = impot / parts;
+        if (impot <= 0) {
+            r0 = 10064;
+            r11 = 0;
+            r30 = 0;
+            r41 = 0;
+            r45 = 0;
+            SalaireCalculer = 10064 * parts;
+        } else if (impot <= 1715.56) {
+            r0 = 10064;
+            r11 = impot / 0.11;
+            r30 = 0;
+            r41 = 0;
+            r45 = 0;
+            SalaireCalculer = ( r0 + r11 + r30 + r41 + r45 ) * parts;
+        } else if (impot <= 14313) {
+            r0 = 10064;
+            r11 = 15596;
+            r30 = (impot - 1715.56) / 0.3;
+            r41 = 0;
+            r45 = 0;
+            SalaireCalculer = ( r0 + r11 + r30 + r41 + r45) * parts;
+        } else if (impot <= 34618) {
+            r0 = 10064;
+            r11 = 15596;
+            r30 = 47710;
+            r41 = (impot - 14313 - 1715.56) / 0.41;
+            r45 = 0;
+            SalaireCalculer = ( r0 + r11 + r30 + r41 + r45) * parts;
+        } else {
+            r0 = 10064;
+            r11 = 15596;
+            r30 = 47710;
+
+            r41 = 84436;
+            r45 = (impot - 34618.76 - 14313 - 1715.56) / 0.45;
+            SalaireCalculer = ( r0 + r11 + r30 + r41 + r45) * parts;
+        }
+        document.getElementById('r0').innerHTML = r0 + ' €';
+        document.getElementById('r11').innerHTML = r11 + ' €';
+        document.getElementById('r30').innerHTML = r30 + ' €';
+        document.getElementById('r41').innerHTML = r41 + ' €';
+        document.getElementById('r45').innerHTML = r45 + ' €';
+        document.getElementById('SalaireCalculer').innerHTML = SalaireCalculer + ' €';
     }
 </script>
 </body>
