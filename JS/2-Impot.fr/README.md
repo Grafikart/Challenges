@@ -28,6 +28,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 ## Vanilla
 
 - @meschac38700 : https://codesandbox.io/s/purple-frost-b4c8g?file=/app.js
+- @mcdostone : [CodeSandbox](https://codesandbox.io/s/angry-cloud-z8n08), [Github](https://github.com/Mcdostone/challenges-public/tree/master/grafikart.fr/JS/2-Impot.fr)
 
 ## React
 
