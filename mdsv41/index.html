@@ -1,163 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Parcel Sandbox</title>
-    <meta charset="UTF-8"/>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8"/>
 </head>
-
 <body>
 <div class="container">
-    <div class="row">
-        <h1>Calcul Impôts avec salaire</h1>
-        <p>
-            <label for="salaire">Salaire Brut :</label>
-            <input id="salaire" type="number" name="salaire" onchange="calcul()">
-        </p>
-        <p>
-            <label for="part">Nombre de part :</label>
-            <input id="part" type="number" name="part" value="1" onchange="calcul()">
-        </p>
-        <ul>
-            <li>Tranche 0 à 10064 :<span id="0"></span></li>
-            <li>Tranche 10064 à 25660 :<span id="11"></span></li>
-            <li>Tranche 25660 à 73370 :<span id="30"></span></li>
-            <li>Tranche 73370 à 157806 :<span id="41"></span></li>
-            <li>Tranche supérieur à 157806 :<span id="45"></span></li>
-        </ul>
-        <p>Montant impot <span id="totalImpot"></span></p>
-        <p>Montant salaire aprés impôt <span id="salaireReste"></span></p>
-        <p>réduction par rapport à 2019 : <span id="delta2019"></span></p>
-    </div>
-    <div class="row">
-        <h1>Calcul le salaire Brut</h1>
-        <p>
-            <label for="salaireNet">Salaire net </label>
-            <input id="salaireNet" type="number" name="salaireNet" onchange="calculInverse()">
-        </p>
-        <p>
-            <label for="parts">Nombre de part</label>
-            <input id="parts" type="number" name="parts" value="1" onchange="calculInverse()">
-        </p>
+  <div class="row">
+    <h1>Calcul Impôts avec salaire</h1>
+    <p>
+      <label for="salaire">Salaire Brut :</label>
+      <input id="salaire" type="number" name="salaire" onchange="calcul()">
+    </p>
+    <p>
+      <label for="part">Nombre de part :</label>
+      <input id="part" type="number" name="part" value="1" onchange="calcul()">
+    </p>
+    <ul>
+      <li>Tranche 0 à 10064 :<span id="0"></span></li>
+      <li>Tranche 10064 à 25660 :<span id="11"></span></li>
+      <li>Tranche 25660 à 73370 :<span id="30"></span></li>
+      <li>Tranche 73370 à 157806 :<span id="41"></span></li>
+      <li>Tranche supérieur à 157806 :<span id="45"></span></li>
+    </ul>
+    <p>Montant impot <span id="totalImpot"></span></p>
+    <p>Montant salaire aprés impôt <span id="salaireReste"></span></p>
+    <p>réduction par rapport à 2019 : <span id="delta2019"></span></p>
+  </div>
+  <div class="row">
+    <h1>Calcul le salaire Brut</h1>
+    <p>
+      <label for="salaireNet">Salaire net </label>
+      <input id="salaireNet" type="number" name="salaireNet" onchange="calculInverse()">
+    </p>
+    <p>
+      <label for="parts">Nombre de part</label>
+      <input id="parts" type="number" name="parts" value="1" onchange="calculInverse()">
+    </p>
 
-        <p>Montant impot <span id="SalaireCalculer"></span></p>
-    </div>
+    <p>Montant impot <span id="SalaireCalculer"></span></p>
+  </div>
 </div>
 <script>
-    function calcul() {
-
-        let t11 = 0;
-        let t30 = 0;
-        let t41 = 0;
-        let t45 = 0;
-        let impot = 0;
-        let salaire = 0;
-        let salaireReste = 0;
-
-        let salaireBrut = document.getElementById('salaire').value;
-        let part = document.getElementById('part').value;
-        salaire = salaireBrut / part;
-        if (salaire <= 10064) {
-            t11 = 0;
-            t30 = 0;
-            t41 = 0;
-            t45 = 0;
-            impot = (t11 + t30 + t41 + t45) * part;
-        } else if (salaire <= 25660) {
-            t11 = (salaire - 10064) * 0.11;
-            t30 = 0;
-            t41 = 0;
-            t45 = 0;
-            impot = (t11 + t30 + t41 + t45) * part;
-        } else if (salaire <= 73370) {
-            t11 = (25660 - 10064) * 0.11;
-            t30 = (salaire - 25660) * 0.30;
-            t41 = 0;
-            t45 = 0;
-            impot = (t11 + t30 + t41 + t45) * part;
-        } else if (salaire <= 157806) {
-            t11 = (25660 - 10064) * 0.11;
-            t30 = (73370 - 25660) * 0.30;
-            t41 = (salaire - 73370) * 0.41;
-            t45 = 0;
-            impot = (t11 + t30 + t41 + t45) * part;
-        } else {
-            t11 = (25660 - 10064) * 0.11;
-            t30 = (73370 - 25660) * 0.30;
-            t41 = (157806 - 73370) * 0.41;
-            t45 = (salaire - 157806) * 0.45;
-            impot = (t11 + t30 + t41 + t45) * part;
-        }
-        let A19t14 = 0;
-        let A19t30 = 0;
-        let A19t41 = 0;
-        let A19t45 = 0;
-        let impot2019 = 0;
-        let delta2019 = 0;
-
-        if (salaire <= 10064) {
-            A19t14 = 0;
-            A19t30 = 0;
-            A19t41 = 0;
-            A19t45 = 0;
-            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
-        } else if (salaire <= 27794) {
-            A19t14 = (salaire - 10064) * 0.14;
-            A19t30 = 0;
-            A19t41 = 0;
-            A19t45 = 0;
-            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
-        } else if (salaire <= 74517) {
-            A19t14 = (27794 - 10064) * 0.14;
-            A19t30 = (salaire - 27794) * 0.30;
-            A19t41 = 0;
-            A19t45 = 0;
-            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
-        } else if (salaire <= 157806) {
-            A19t14 = (27794 - 10064) * 0.14;
-            A19t30 = (74517 - 27794) * 0.30;
-            A19t41 = (salaire - 74517) * 0.41;
-            A19t45 = 0;
-            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
-        } else {
-            A19t14 = (27794 - 10064) * 0.14;
-            A19t30 = (74517 - 27794) * 0.30;
-            A19t41 = (157806 - 74517) * 0.41;
-            A19t45 = (salaire - 157806) * 0.45;
-            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
-        }
-        salaireReste = salaireBrut - impot;
-        delta2019 = impot - impot2019
-
-        document.getElementById('0').innerHTML = '0,00 €';
-        document.getElementById('11').innerHTML = t11 + ' €';
-        document.getElementById('30').innerHTML = t30 + ' €';
-        document.getElementById('41').innerHTML = t41 + ' €';
-        document.getElementById('45').innerHTML = t45 + ' €';
-        document.getElementById('totalImpot').innerHTML = Math.round(impot) + ' €';
-        document.getElementById('salaireReste').innerHTML = Math.round(salaireReste) + ' €';
-        document.getElementById('delta2019').innerHTML = Math.round(delta2019) + ' €';
-
+  function calcul() {
+    let t11;
+    let t30;
+    let t41;
+    let t45;
+    let impot;
+    let salaire;
+    let salaireReste;
+    let salaireBrut = document.getElementById('salaire').value;
+    let part = document.getElementById('part').value;
+    salaire = salaireBrut / part;
+    if (salaire <= 10064) {
+      t11 = 0;
+      t30 = 0;
+      t41 = 0;
+      t45 = 0;
+      impot = (t11 + t30 + t41 + t45) * part;
+    } else if (salaire <= 25660) {
+      t11 = (salaire - 10064) * 0.11;
+      t30 = 0;
+      t41 = 0;
+      t45 = 0;
+      impot = (t11 + t30 + t41 + t45) * part;
+    } else if (salaire <= 73370) {
+      t11 = (25660 - 10064) * 0.11;
+      t30 = (salaire - 25660) * 0.30;
+      t41 = 0;
+      t45 = 0;
+      impot = (t11 + t30 + t41 + t45) * part;
+    } else if (salaire <= 157806) {
+      t11 = (25660 - 10064) * 0.11;
+      t30 = (73370 - 25660) * 0.30;
+      t41 = (salaire - 73370) * 0.41;
+      t45 = 0;
+      impot = (t11 + t30 + t41 + t45) * part;
+    } else {
+      t11 = (25660 - 10064) * 0.11;
+      t30 = (73370 - 25660) * 0.30;
+      t41 = (157806 - 73370) * 0.41;
+      t45 = (salaire - 157806) * 0.45;
+      impot = (t11 + t30 + t41 + t45) * part;
     }
-    function calculInverse() {
-
-        let SalaireCalculer = 0;
-
-        let salaireNet = document.getElementById('salaireNet').value;
-        let parts = document.getElementById('parts').value;
-        salaireNet = salaireNet / parts;
-        if (salaireNet <= 10064) {
-            SalaireCalculer = 10064 * parts;
-        } else if (salaireNet + 1715.56 <= 25660) {
-            SalaireCalculer = (( salaireNet - 1107.04 ) / 0.89 ) * parts;
-        } else if (salaireNet + 1715.56 + 14313 <= 73370 && salaireNet + 1715.56 > 25660) {
-            SalaireCalculer = (( salaireNet + 1715.56 - 7698 ) / 0.7 ) * parts;
-        } else if (salaireNet + 1715.56 + 14313 + 34618.76 <= 157806 && salaireNet + 1715.56 + 14313  > 73370) {
-            SalaireCalculer = (( salaireNet + 1715.56 + 14313 - 30081.7 ) / 0.59 ) * parts;
-        } else {
-            SalaireCalculer = (( salaireNet + 1715.56 + 14313 + 34618.76 - 71012.7) / 0.55) * parts;
-        }
-        document.getElementById('SalaireCalculer').innerHTML = Math.round(SalaireCalculer) + ' €';
+    let A19t14;
+    let A19t30;
+    let A19t41;
+    let A19t45;
+    let impot2019;
+    let delta2019;
+    if (salaire <= 10064) {
+      A19t14 = 0;
+      A19t30 = 0;
+      A19t41 = 0;
+      A19t45 = 0;
+      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+    } else if (salaire <= 27794) {
+      A19t14 = (salaire - 10064) * 0.14;
+      A19t30 = 0;
+      A19t41 = 0;
+      A19t45 = 0;
+      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+    } else if (salaire <= 74517) {
+      A19t14 = (27794 - 10064) * 0.14;
+      A19t30 = (salaire - 27794) * 0.30;
+      A19t41 = 0;
+      A19t45 = 0;
+      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+    } else if (salaire <= 157806) {
+      A19t14 = (27794 - 10064) * 0.14;
+      A19t30 = (74517 - 27794) * 0.30;
+      A19t41 = (salaire - 74517) * 0.41;
+      A19t45 = 0;
+      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+    } else {
+      A19t14 = (27794 - 10064) * 0.14;
+      A19t30 = (74517 - 27794) * 0.30;
+      A19t41 = (157806 - 74517) * 0.41;
+      A19t45 = (salaire - 157806) * 0.45;
+      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
     }
+    salaireReste = salaireBrut - impot;
+    delta2019 = impot - impot2019
+    document.getElementById('0').innerHTML = '0,00 €';
+    document.getElementById('11').innerHTML = t11 + ' €';
+    document.getElementById('30').innerHTML = t30 + ' €';
+    document.getElementById('41').innerHTML = t41 + ' €';
+    document.getElementById('45').innerHTML = t45 + ' €';
+    document.getElementById('totalImpot').innerHTML = Math.round(impot) + ' €';
+    document.getElementById('salaireReste').innerHTML = Math.round(salaireReste) + ' €';
+    document.getElementById('delta2019').innerHTML = Math.round(delta2019) + ' €';
+  }
+
+  function calculInverse() {
+    let SalaireCalculer;
+    let salaireNet = document.getElementById('salaireNet').value;
+    let parts = document.getElementById('parts').value;
+    salaireNet = salaireNet / parts;
+    if (salaireNet <= 10064) {
+      SalaireCalculer = 10064 * parts;
+    } else if (salaireNet + 1715.56 <= 25660) {
+      SalaireCalculer = ((salaireNet - 1107.04) / 0.89) * parts;
+    } else if (salaireNet + 1715.56 + 14313 <= 73370 && salaireNet + 1715.56 > 25660) {
+      SalaireCalculer = ((salaireNet + 1715.56 - 7698) / 0.7) * parts;
+    } else if (salaireNet + 1715.56 + 14313 + 34618.76 <= 157806 && salaireNet + 1715.56 + 14313 > 73370) {
+      SalaireCalculer = ((salaireNet + 1715.56 + 14313 - 30081.7) / 0.59) * parts;
+    } else {
+      SalaireCalculer = ((salaireNet + 1715.56 + 14313 + 34618.76 - 71012.7) / 0.55) * parts;
+    }
+    document.getElementById('SalaireCalculer').innerHTML = Math.round(SalaireCalculer) + ' €';
+  }
 </script>
 </body>
 </html>
