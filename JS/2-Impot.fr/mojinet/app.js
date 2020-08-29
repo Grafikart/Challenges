@@ -271,14 +271,15 @@ class CalcImpot {
         return (taxe * PART).toFixed(2)
     }
 
-    // Calcule inverser, on fournis une valeur net APRES impot pour que ça nous renvois la valeur AVANT impot qu'il faut
+    // Calcule inverser, on fournis une valeur net APRES impot pour que ça nous renvois le revenu à avoir
+    // Ce n'est pas un calcule a proprement parler mais une série de test pour trouver la valeur
+    // Cela demande donc un temps de calcule proportionnel à la somme à convertir
     returnReverse(netTarget, nbEnfant = 0, concubin = false){
-        // si imposition maximal = 45%
-        let max = Math.floor(netTarget * 1.83)
+        // Si imposition maximal = 45%
+        let max = Math.floor(netTarget / 0.55)
+        // On définie le revenu au max, plus le revenu est haut plus on approche des 45% d'imposition sans jamais totalement les atteindres
         let revenu = max;
-        //
-        let tmpRevenu
-
+        // Et on calcule toute les valeurs de façon décroissante à partir du max
         while((netTarget != this.calcNet(revenu, nbEnfant, concubin))){
             revenu--
         }
