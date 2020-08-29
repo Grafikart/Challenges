@@ -55,14 +55,15 @@ class FormImpot extends React.Component{
     handleChange(e){
         let name = e.target.name
         let type = e.target.type
-        let value = type === 'checkbox' ? e.target.checked : parseInt(e.target.value)
-        
+        let value = type === 'checkbox' ? e.target.checked : e.target.value
+        Number.isInteger(value) ? parseInt(e.target.value) : 0
+
         if (name == 'netCalc'){
             this.setState({[name]: value}, ()=>{
                 this.calcReverseRender()  
             })
 
-        } else{
+        } else {
             this.setState({[name]: value}, ()=>{
                 this.calcRender() 
             })
