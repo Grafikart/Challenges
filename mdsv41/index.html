@@ -26,6 +26,7 @@
         </ul>
         <p>Montant impot <span id="totalImpot"></span></p>
         <p>Montant salaire aprés impôt <span id="salaireReste"></span></p>
+        <p>réduction par rapport à 2019 : <span id="delta2019"></span></p>
     </div>
     <div class="row">
         <h1>Calcul le salaire Brut</h1>
@@ -86,14 +87,56 @@
             t45 = (salaire - 157806) * 0.45;
             impot = (t11 + t30 + t41 + t45) * part;
         }
+        let A19t14 = 0;
+        let A19t30 = 0;
+        let A19t41 = 0;
+        let A19t45 = 0;
+        let impot2019 = 0;
+        let delta2019 = 0;
+
+        if (salaire <= 10064) {
+            A19t14 = 0;
+            A19t30 = 0;
+            A19t41 = 0;
+            A19t45 = 0;
+            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+        } else if (salaire <= 27794) {
+            A19t14 = (salaire - 10064) * 0.14;
+            A19t30 = 0;
+            A19t41 = 0;
+            A19t45 = 0;
+            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+        } else if (salaire <= 74517) {
+            A19t14 = (27794 - 10064) * 0.14;
+            A19t30 = (salaire - 27794) * 0.30;
+            A19t41 = 0;
+            A19t45 = 0;
+            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+        } else if (salaire <= 157806) {
+            A19t14 = (27794 - 10064) * 0.14;
+            A19t30 = (74517 - 27794) * 0.30;
+            A19t41 = (salaire - 74517) * 0.41;
+            A19t45 = 0;
+            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+        } else {
+            A19t14 = (27794 - 10064) * 0.14;
+            A19t30 = (74517 - 27794) * 0.30;
+            A19t41 = (157806 - 74517) * 0.41;
+            A19t45 = (salaire - 157806) * 0.45;
+            impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+        }
         salaireReste = salaireBrut - impot;
+        delta2019 = impot - impot2019
+
         document.getElementById('0').innerHTML = '0,00 €';
         document.getElementById('11').innerHTML = t11 + ' €';
         document.getElementById('30').innerHTML = t30 + ' €';
         document.getElementById('41').innerHTML = t41 + ' €';
         document.getElementById('45').innerHTML = t45 + ' €';
-        document.getElementById('totalImpot').innerHTML = impot + ' €';
-        document.getElementById('salaireReste').innerHTML = salaireReste + ' €';
+        document.getElementById('totalImpot').innerHTML = Math.round(impot) + ' €';
+        document.getElementById('salaireReste').innerHTML = Math.round(salaireReste) + ' €';
+        document.getElementById('delta2019').innerHTML = Math.round(delta2019) + ' €';
+
     }
     function calculInverse() {
 
@@ -113,7 +156,7 @@
         } else {
             SalaireCalculer = (( salaireNet + 1715.56 + 14313 + 34618.76 - 71012.7) / 0.55) * parts;
         }
-        document.getElementById('SalaireCalculer').innerHTML = SalaireCalculer + ' €';
+        document.getElementById('SalaireCalculer').innerHTML = Math.round(SalaireCalculer) + ' €';
     }
 </script>
 </body>
