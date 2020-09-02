@@ -32,7 +32,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 
 ## React
 
-- @Mania#6276 : [CodeSandbox](https://codesandbox.io/s/github/MathisBarre/grafikart-challenge-impots) - [CodeSandbox Livetest](https://sl8sp.csb.app/)
+- ⭐@Mania#6276 : https://codesandbox.io/s/github/MathisBarre/grafikart-challenge-impots ([Demo](https://sl8sp.csb.app/))
 - @LemaireJean-Baptiste : [CodeSandbox](https://codesandbox.io/s/grafikart-challenge-tax-calculator-jbl-dr8zo)
 - @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i (Typescript)
 - @playeurzero : https://ovmzu.csb.app/
@@ -41,9 +41,9 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 
 ## VueJS
 
+- ⭐@eroak : https://codesandbox.io/s/coding-challenge-js-impot-pb7c0 ([Demo](https://pb7c0.csb.app/))
 - @Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
 - @aschelch : https://jsfiddle.net/aschelch/a9emwd1t/9/
-- ⭐@eroak : https://codesandbox.io/s/coding-challenge-js-impot-pb7c0 ([Demo](https://pb7c0.csb.app/))
 
 ## Svelte
 
