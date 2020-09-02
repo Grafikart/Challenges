@@ -37,6 +37,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 - @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i (Typescript)
 - @playeurzero : https://ovmzu.csb.app/
 - @Anass-Rhazal : https://codesandbox.io/s/sparkling-framework-d54g8
+- @samibettayeb : https://github.com/dchallenges/tax-calculator ([Demo](https://dchallenges.github.io/taxca/))
 
 ## VueJS
 
