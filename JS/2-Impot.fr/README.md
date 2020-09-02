@@ -36,6 +36,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 - @LemaireJean-Baptiste : [CodeSandbox](https://codesandbox.io/s/grafikart-challenge-tax-calculator-jbl-dr8zo)
 - @jordanmonier : https://codesandbox.io/s/elated-wright-wgt9i (Typescript)
 - @playeurzero : https://ovmzu.csb.app/
+- @Anass-Rhazal : https://codesandbox.io/s/sparkling-framework-d54g8
 
 ## VueJS
 
