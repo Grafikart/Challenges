@@ -33,6 +33,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 - @lsarrazi : https://playcode.io/659406
 - @mcdostone : https://codesandbox.io/s/angry-cloud-z8n08
 - @mdsv41 : https://codesandbox.io/s/gallant-torvalds-rem0p
+- @Dedouduck : https://codesandbox.io/s/wispy-pond-lwrlz
 
 ## React
 
@@ -42,16 +43,16 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 - @playeurzero : https://ovmzu.csb.app/
 - @Anass-Rhazal : https://codesandbox.io/s/sparkling-framework-d54g8
 - @samibettayeb : https://github.com/dchallenges/tax-calculator ([Demo](https://dchallenges.github.io/taxca/))
-- @mojinet https://codepen.io/mojinet/pen/jOqBRBQ
-- @zacoDev https://github.com/zacoDev/grafikart-challenge ([Demo](http://www.calculimpotfrance.tk/))
-- @jeremyradenne https://codesandbox.io/s/heoqi Typescript ([Demo](https://heoqi.csb.app/))
+- @mojinet : https://codepen.io/mojinet/pen/jOqBRBQ
+- @zacoDev : https://github.com/zacoDev/grafikart-challenge ([Demo](http://www.calculimpotfrance.tk/))
+- @jeremyradenne : https://codesandbox.io/s/heoqi Typescript ([Demo](https://heoqi.csb.app/))
 
 ## VueJS
 
 - ⭐@eroak : https://codesandbox.io/s/coding-challenge-js-impot-pb7c0 ([Demo](https://pb7c0.csb.app/))
-- @Da-max https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
+- @Da-max : https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
 - @aschelch : https://jsfiddle.net/aschelch/a9emwd1t/9/
 
 ## Svelte
 
-- @PeufOne: https://codesandbox.io/s/wandering-morning-g7ow0
+- @PeufOne : https://codesandbox.io/s/wandering-morning-g7ow0
