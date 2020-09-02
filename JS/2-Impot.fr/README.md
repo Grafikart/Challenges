@@ -28,6 +28,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 ## Vanilla
 
 - @meschac38700 : https://codesandbox.io/s/purple-frost-b4c8g?file=/app.js
+- @Arnich : https://nervous-mclean-74e21c.netlify.app - [Github](https://github.com/Oipnet/calculateur-impots)
 
 ## React
 
