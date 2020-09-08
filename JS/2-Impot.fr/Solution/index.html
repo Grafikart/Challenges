@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Title</title>
   <script src="ui.js" type="module" defer></script>
 </head>
+
 <body>
   <h1>Calculateur d'impôt</h1>
   <fieldset style="margin-bottom: 20px;">
@@ -24,26 +26,27 @@
   <fieldset style="margin-bottom: 20px;">
     <legend>Résultats</legend>
     <p>
-      <strong>Impôts :</strong> <span id="impot"></span><br/>
+      <strong>Impôts :</strong> <span id="impot"></span><br />
       <strong>Taux :</strong> <span id="rate"></span>
     </p>
     <p>
       <label for="result">Revenues après impôt</label>
-      <input disabled type="number" id="result" placeholder="Résultat">
+      <input type="number" id="result" placeholder="Résultat">
     </p>
   </fieldset>
   <fieldset>
     <legend>Tranches</legend>
     <table style="width:100%">
       <thead>
-      <tr>
-        <th>Pallier</th>
-        <th>Taux</th>
-        <th>Impot</th>
-      </tr>
+        <tr>
+          <th>Pallier</th>
+          <th>Taux</th>
+          <th>Impot</th>
+        </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
   </fieldset>
 </body>
+
 </html>

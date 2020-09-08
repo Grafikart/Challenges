@@ -62,11 +62,14 @@ describe('Imposition', () => {
 
   })
 
-  describe('impotReversed()', () => {
-
-    test('Célibataire avec 32 000 €', () => {
-      expect(impotReversed(32000 - 3617.34, RATES_2020)).toBe(32000)
-    })
-
+  test.each([
+    [32000],
+    [10000],
+    [18650],
+    [50000],
+    [100000],
+    [150000],
+  ])('impotReversed(%p)', (target) => {
+    expect(impotReversed(target - impot(target), RATES_2020)).toBe(target)
   })
 })

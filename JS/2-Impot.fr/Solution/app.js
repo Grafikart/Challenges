@@ -43,7 +43,7 @@ export const RATES_2019 = [
  * @param decimal
  * @returns {number}
  */
-function round (n, decimal) {
+function round(n, decimal) {
   return Math.round(n * (10 ** decimal)) / (10 ** decimal)
 }
 
@@ -54,7 +54,7 @@ function round (n, decimal) {
  * @param {array} rates
  * @returns {number}
  */
-export function impot (revenue, rates = RATES_2020) {
+export function impot(revenue, rates = RATES_2020) {
   const tranches = impotWithTranches(revenue, rates)
   return tranches.reduce((acc, tranche) => acc + tranche, 0)
 }
@@ -67,7 +67,7 @@ export function impot (revenue, rates = RATES_2020) {
  * @param {array} rates
  * @returns {number[]}
  */
-export function impotWithTranches (revenue, rates = RATES_2020) {
+export function impotWithTranches(revenue, rates = RATES_2020) {
   const tranches = []
   for (const index in rates) {
     const rate = rates[index]
@@ -89,7 +89,7 @@ export function impotWithTranches (revenue, rates = RATES_2020) {
  * @param isMarried
  * @param children
  */
-export function getParts (isMarried = false, children = 0) {
+export function getParts(isMarried = false, children = 0) {
   return (isMarried ? 2 : 1) + (children * .5)
 }
 
@@ -100,21 +100,32 @@ export function getParts (isMarried = false, children = 0) {
  * @param {number} part
  * @param {array} rates
  */
-export function impotWithPart (revenues, part, rates = RATES_2020) {
+export function impotWithPart(revenues, part, rates = RATES_2020) {
   return Math.round(part * impot(revenues / part, rates))
 }
 
-export function impotReversed (value, rates = RATES_2020) {
+/**
+ * Calcul l'inversion de l'impot (trouve le revenu avant impot)
+ *
+ * @param {number} value
+ * @param {array} rates
+ */
+export function impotReversed(value, parts = 1, rates = RATES_2020) {
+  // On calcul l'impot associé au max de chaque branche
   const reversedTranches = rates.map(rate => {
     const due = impot(rate.max, rates)
     return {
       ...rate,
       impot: due,
-      rest: rate.max === Infinity ? Infinity : rate.max - impot(rate.max, rates),
+      afterImpotMax: rate.max - due
     }
   })
-  let index = reversedTranches.findIndex(tranche => value < tranche.max)
-  console.log(reversedTranches, index)
-  const rest = value - reversedTranches[index - 1].max
-  return value + rest / (1 - reversedTranches[index - 1].rate)
+  // On trouve dans quel tranche va se trouver l'utilisateur
+  let index = reversedTranches.findIndex(tranche => value / parts < tranche.afterImpotMax)
+  // On récupère les infos de la tranche courante et précédente
+  const tranche = reversedTranches[index]
+  let previousTranche = reversedTranches[index - 1];
+  const previousTrancheImpot = previousTranche ? previousTranche.impot : 0
+  const min = previousTranche ? previousTranche.max + 1 : 0
+  return round( (value + previousTrancheImpot - min * tranche.rate) / (1 - tranche.rate), 2)
 }
