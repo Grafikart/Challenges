@@ -52,6 +52,7 @@ Pour l'exercice final on prendra le problème en sens inverse et on permettra à
 - ⭐@eroak : https://codesandbox.io/s/coding-challenge-js-impot-pb7c0 ([Demo](https://pb7c0.csb.app/))
 - @Da-max : https://codesandbox.io/s/calcul-impot-3dkxp niveau 3 (avec vue et vuetify)
 - @aschelch : https://jsfiddle.net/aschelch/a9emwd1t/9/
+- @Khivar : https://khivar.github.io/taxes-calculator/ ([Code](https://github.com/Khivar/taxes-calculator))
 
 ## Svelte
 
