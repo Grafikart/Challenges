@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Title</title>
+  <script src="ui.js" type="module" defer></script>
+</head>
+<body>
+  <h1>Calculateur d'impôt</h1>
+  <fieldset style="margin-bottom: 20px;">
+    <legend>Informations</legend>
+    <p>
+      <label for="revenues">Revenues net</label>
+      <input value="32000" type="number" id="revenues" placeholder="Vos revenus nets">
+    </p>
+    <p>
+      <input value="1" type="checkbox" id="couple">
+      <label for="couple">En couple ?</label>
+    </p>
+    <p>
+      <label for="children">Nombre d'enfant</label>
+      <input value="0" type="number" id="children" min="0" max="36">
+    </p>
+  </fieldset>
+  <fieldset style="margin-bottom: 20px;">
+    <legend>Résultats</legend>
+    <p>
+      <strong>Impôts :</strong> <span id="impot"></span><br/>
+      <strong>Taux :</strong> <span id="rate"></span>
+    </p>
+    <p>
+      <label for="result">Revenues après impôt</label>
+      <input disabled type="number" id="result" placeholder="Résultat">
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Tranches</legend>
+    <table style="width:100%">
+      <thead>
+      <tr>
+        <th>Pallier</th>
+        <th>Taux</th>
+        <th>Impot</th>
+      </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </fieldset>
+</body>
+</html>
