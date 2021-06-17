@@ -1,4 +1,4 @@
-import { getParts, impot, impotWithPart, impotWithTranches, RATES_2020, impotReversed } from './app.js'
+import { getParts, impot, impotWithPart, impotWithTranches, RATES_2021, impotReversed } from './app.js'
 
 const revenusInput = document.getElementById('revenues')
 const impotText = document.getElementById('impot')
@@ -58,7 +58,7 @@ function handleChange(e = null) {
 }
 
 function buildTable() {
-  const rates = RATES_2020
+  const rates = RATES_2021
   for (const rate of rates) {
     const tr = document.createElement('tr')
     tr.innerHTML = `

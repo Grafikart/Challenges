@@ -1,14 +1,14 @@
-import {impot, impotReversed, impotWithPart, impotWithTranches, RATES_2019, RATES_2020} from './app'
+import {impot, impotReversed, impotWithPart, impotWithTranches, RATES_2019, RATES_2020, RATES_2021} from './app'
 
 describe('Imposition', () => {
 
   describe('impot()', () => {
 
-    test('Célibataire avec 32 000 €', () => {
+    test('Célibataire avec 32 000 € en 2020', () => {
       expect(impot(32000, RATES_2020)).toBe(3617.34)
     })
 
-    test('Célibataire avec 18 650 €', () => {
+    test('Célibataire avec 18 650 € en 2020', () => {
       expect(impot(18650, RATES_2020)).toBe(944.35)
     })
 
@@ -18,6 +18,10 @@ describe('Imposition', () => {
 
     test('Célibataire avec 18 650 € en 2019', () => {
       expect(impot(18650, RATES_2019)).toBe(1201.9)
+    })
+
+    test('Célibataire avec 32 000 € en 2021', () => {
+      expect(impot(32000, RATES_2021)).toBe(3605.45)
     })
 
   })

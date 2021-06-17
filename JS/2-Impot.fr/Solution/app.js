@@ -1,3 +1,22 @@
+export const RATES_2021 = [
+  {
+    max: 10084,
+    rate: 0
+  }, {
+    max: 25710,
+    rate: .11
+  }, {
+    max: 73516,
+    rate: .30
+  }, {
+    max: 158122,
+    rate: .41
+  }, {
+    max: Infinity,
+    rate: .45
+  }
+]
+
 export const RATES_2020 = [
   {
     max: 10064,
@@ -54,7 +73,7 @@ function round(n, decimal) {
  * @param {array} rates
  * @returns {number}
  */
-export function impot(revenue, rates = RATES_2020) {
+export function impot(revenue, rates = RATES_2021) {
   const tranches = impotWithTranches(revenue, rates)
   return tranches.reduce((acc, tranche) => acc + tranche, 0)
 }
@@ -67,7 +86,7 @@ export function impot(revenue, rates = RATES_2020) {
  * @param {array} rates
  * @returns {number[]}
  */
-export function impotWithTranches(revenue, rates = RATES_2020) {
+export function impotWithTranches(revenue, rates = RATES_2021) {
   const tranches = []
   for (const index in rates) {
     const rate = rates[index]
@@ -100,7 +119,7 @@ export function getParts(isMarried = false, children = 0) {
  * @param {number} part
  * @param {array} rates
  */
-export function impotWithPart(revenues, part, rates = RATES_2020) {
+export function impotWithPart(revenues, part, rates = RATES_2021) {
   return Math.round(part * impot(revenues / part, rates))
 }
 
@@ -110,7 +129,7 @@ export function impotWithPart(revenues, part, rates = RATES_2020) {
  * @param {number} value
  * @param {array} rates
  */
-export function impotReversed(value, parts = 1, rates = RATES_2020) {
+export function impotReversed(value, parts = 1, rates = RATES_2021) {
   // On calcul l'impot associé au max de chaque branche
   const reversedTranches = rates.map(rate => {
     const due = impot(rate.max, rates)
