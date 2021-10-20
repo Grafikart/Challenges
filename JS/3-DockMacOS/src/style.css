@@ -1,0 +1,85 @@
+html,
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.dock__wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.dock__wrapper--left,
+.dock__wrapper--right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dock__wrapper--right {
+  left: auto;
+  right: 0;
+}
+.dock__wrapper--left .dock,
+.dock__wrapper--right .dock {
+  flex-direction: column;
+}
+
+.dock__wrapper--top {
+  top: 0;
+  bottom: auto;
+}
+
+.dock {
+  position: relative;
+  background-color: grey;
+  display: flex;
+}
+
+.dock::before {
+  position: absolute;
+  content:'';
+  left: 0;
+  height: 100%;
+  width: var(--before, 0px);
+  background-color: grey;
+  transform: translateX(-100%)
+}
+
+.dock::after {
+  position: absolute;
+  content:'';
+  right: 0;
+  height: 100%;
+  width: var(--after, 0px);
+  background-color: grey;
+  transform: translateX(100%)
+}
+
+.dock img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.icon {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+}
