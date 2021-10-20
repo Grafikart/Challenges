@@ -42,28 +42,7 @@ body {
 
 .dock {
   position: relative;
-  background-color: grey;
   display: flex;
-}
-
-.dock::before {
-  position: absolute;
-  content:'';
-  left: 0;
-  height: 100%;
-  width: var(--before, 0px);
-  background-color: grey;
-  transform: translateX(-100%)
-}
-
-.dock::after {
-  position: absolute;
-  content:'';
-  right: 0;
-  height: 100%;
-  width: var(--after, 0px);
-  background-color: grey;
-  transform: translateX(100%)
 }
 
 .dock img {

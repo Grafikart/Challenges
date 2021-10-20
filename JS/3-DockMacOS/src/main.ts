@@ -65,12 +65,10 @@ class MacDock {
     for (let i = selectedIndex + 1; i < this.icons.length; i++) {
       offset += this.scaleFromDirection(i, this.isVertical ? Direction.Down : Direction.Right, offset);
     }
-    this.root.style.setProperty('--after', `${offset}px`)
     offset = baseOffset * (0.5 + centerOffset)
     for (let i = selectedIndex - 1; i >= 0; i--) {
       offset += this.scaleFromDirection(i, this.isVertical ? Direction.Up : Direction.Left, -offset);
     }
-    this.root.style.setProperty('--before', `${offset}px`)
   }
 
   scaleFromDirection (index: number, direction: Direction, offset: number): number {
@@ -87,8 +85,6 @@ class MacDock {
       icon.style.removeProperty('transform')
       icon.style.setProperty('transition', 'transform .1s');
     })
-    this.root.style.removeProperty('--after')
-    this.root.style.removeProperty('--before')
   }
 
   handleMouseEnter () {
