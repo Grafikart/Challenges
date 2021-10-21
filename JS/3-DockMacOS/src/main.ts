@@ -49,11 +49,10 @@ class MacDock {
   }
 
   handleMouseMove (e: MouseEvent) {
-    if (this.isVertical) {
-      this.mousePosition = (e.clientY - this.root.offsetTop) / this.iconSize
-    } else {
-      this.mousePosition = (e.clientX - this.root.offsetLeft) / this.iconSize
-    }
+    this.mousePosition = this.isVertical
+     ? (e.clientY - this.root.offsetTop) / this.iconSize
+     : (e.clientX - this.root.offsetLeft) / this.iconSize
+
     this.scaleIcons()
   }
 
