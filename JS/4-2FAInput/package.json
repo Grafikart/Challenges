@@ -1,0 +1,17 @@
+{
+  "name": "tpjscode",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "cypress open",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "cypress": "^13.7.3",
+    "prettier": "^3.2.5",
+    "vite": "^5.2.0"
+  }
+}
