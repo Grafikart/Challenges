@@ -26,6 +26,8 @@ class CodeInput extends HTMLElement {
                     type="text" 
                     value="${value.slice(k, k + 1)}"
                     pattern="[0-9]{1}"
+                    inputmode="number"
+                    aria-label="Chiffre ${k + 1}"
                     >`).join("")} 
             </div>
             <input type="hidden" name="${name}" value="${value}">
