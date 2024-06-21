@@ -99,7 +99,7 @@ describe("Spécification de <code-input>", () => {
     });
     it("Coller un code avec des lettres ne garde que les nombres", () => {
       cy.mount(defaultAttrs)
-      cy.get("input:first").invoke("val", "12a345b6").trigger("input");
+      cy.get("input:first").paste("12a345b6")
       expectFieldsToHave("123456");
     });
     it("Coller un code avec des lettres ne garde que les nombres", () => {

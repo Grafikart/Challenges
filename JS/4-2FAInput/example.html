@@ -6,9 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Vite App</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        input {
+            border: 1px solid #DFDFDF;
+        }
+
+        code-input legend {
+            opacity: .75;
+            text-align: center;
+        }
+
+        .code-inputs {
+            display: flex;
+            justify-content: center;
+            gap: .5rem;
+            margin-block: 1rem;
+        }
+
+        .code-inputs input {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .code-inputs input:focus {
+            outline: solid 4px #cfedff;
+            border-color: #5bb7e1;
+        }
+    </style>
 </head>
 <body>
-<h1>Authentification à 2 facteurs</h1>
+<h1>Résultat attendu</h1>
 <form action="" method="get">
     <code-input
             name="code"

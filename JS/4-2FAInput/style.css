@@ -113,34 +113,6 @@ h1 {
     margin-bottom: 2rem;
 }
 
-fieldset legend {
-    text-align: center;
-    opacity: .75;
-}
-
-.code-inputs {
-    display: flex;
-    gap: .5rem;
-    margin: 1rem auto;
-    width: max-content;
-}
-
-.code-inputs input {
-    --size: 50px;
-    width: var(--size);
-    height: var(--size);
-    border: 1px solid #dfdfdf;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-.code-inputs input:focus {
-    outline: solid 4px #cfedff;
-    border-color: #5bb7e1;
-}
-
 button {
     background: rgb(28, 100, 242);
     padding: .5rem 1rem;

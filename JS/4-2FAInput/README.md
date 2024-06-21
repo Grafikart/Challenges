@@ -40,10 +40,12 @@ npm run dev
 
 Un serveur local sera lancé et sera accessible sur [localhost:5173](http://localhost:5173). Vous pouvez commencer à travailler sur le fichier `src/source.js`.
 
-Pour tester que votre code corresponde aux exigeances du client, vous pouvez lancer les tests à l'aide de la commande.
+Pour tester que votre code corresponde aux attentes du client, vous pouvez lancer les tests à l'aide de la commande.
 
 ```bash
 npm run test
 ```
 
 Une fenêtre devrait s'ouvrir vous listant les tests et vous pouvez la laisser ouverte pendant que vous développer pour tester le code automatiquement à chaque changement de code.
+
+Vous pouvez aussi comparer à la solution attendue en regardant http://localhost:5173/example.html
