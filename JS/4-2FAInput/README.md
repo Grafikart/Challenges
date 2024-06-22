@@ -32,7 +32,7 @@ A vous de jouer !
 
 ## Environnement
 
-Après avoir installé les dépendances à via `npm install` (ou autre gestionnaire) vous pourrez lancer la page contenant le formulaire à l'aide de la commande : 
+Après avoir installé les dépendances via `npm install` (ou autre gestionnaire) vous pourrez lancer la page contenant le formulaire à l'aide de la commande : 
 
 ```bash
 npm run dev

@@ -1,0 +1,114 @@
+body {
+    margin: 1rem;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    --color: #3788d8;
+}
+
+.calendar td, .calendar th {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.calendar th {
+    border-color: #FFF;
+    border-bottom-width: 2px;
+    width: calc(100% / 7);
+}
+
+.calendar td {
+    vertical-align: top;
+    width: calc(100% / 7);
+    max-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.calendar__cell {
+    --padding: .5rem;
+    padding: var(--padding);
+    aspect-ratio: 1;
+
+    min-width: 0;
+    width: 100%;
+}
+
+.calendar__date {
+    text-align: right;
+}
+
+.calendar__date-diff {
+    opacity: .3;
+}
+
+.calendar__events {
+    position: relative;
+    padding-top: calc(var(--offset) * 24px);
+}
+
+.calendar__event-hours {
+    font-size: .9rem;
+}
+
+.calendar__event-hour {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.calendar__event-hour::before {
+    content:'';
+    flex: none;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--color);
+}
+
+.calendar__event-hour span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar__event-fullday {
+    position: absolute;
+    --overflow: 0px;
+    width: calc(100% * var(--days) + (var(--padding) * 2 + 1px) * (var(--days) - 1) + var(--overflow));
+    background-color: var(--color);
+    color: #FFF;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 2px;
+    padding: 0 5px;
+    top: calc(var(--offset) * 24px)
+}
+
+.calendar__event-overflow-left{
+    margin-left: calc(var(--padding) * -1);
+    --overflow: var(--padding);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.calendar__event-overflow-right{
+    --overflow: var(--padding);
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.calendar__event-overflow-left.calendar__event-overflow-right {
+    --overflow: calc(var(--padding) * 2);
+}
+
+.calendar__event-doctor {
+    --color: #ff5858;
+}
+
+.calendar__event-holidays {
+    --color: #74b057;
+}
+
