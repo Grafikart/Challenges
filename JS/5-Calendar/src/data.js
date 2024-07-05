@@ -116,5 +116,5 @@ function immutDate(date) {
       return typeof value == "function" ? value.bind(target) : value;
     },
   };
-  return new Proxy(new Date(), immutableHandler);
+  return new Proxy(date, immutableHandler);
 }
